@@ -10,14 +10,14 @@ As a user, <br>
 I want to be able to add a contact to the address book (name, phone number and email address), <br>
 So that I can save the contact for future use. <br>
 
-|   Object    |                          Properties                           |     Messages     | Output |
-| :---------: | :-----------------------------------------------------------: | :--------------: | :----: |
-| AddressBook |                 contacts @ArrayList<Contact>                  |   addContact()   | @void  |
-|   Contact   |                         name @String                          |    setName()     | @void  |
-|             |                         email @String                         |    setEmail()    | @void  |
-|             |                      phoneNumber @String                      | setPhoneNumber() | @void  |
-|             |                            id @int                            |                  |        |
-|             | constructor(name @String, email @String, phoneNumber @String) |                  | @void  |
+|   Object    |                          Properties                           |        Messages         | Output |
+| :---------: | :-----------------------------------------------------------: | :---------------------: | :----: |
+| AddressBook |                 contacts @ArrayList<Contact>                  |  addContact(@Contact)   | @void  |
+|   Contact   |                         name @String                          |    setName(@String)     | @void  |
+|             |                         email @String                         |    setEmail(@String)    | @void  |
+|             |                      phoneNumber @String                      | setPhoneNumber(@String) | @void  |
+|             |                            id @int                            |                         |        |
+|             | constructor(name @String, email @String, phoneNumber @String) |                         | @void  |
 
 ##### Test Cases:-
 - addContact() should add an entry to the contact arraylist<>.
@@ -35,14 +35,14 @@ As a user, <br>
 I want to be able to search for a contact by name, <br>
 So that I can save time finding the contact. <br>
 
-|   Object    |                          Properties                           |     Messages     |       Output        |
-| :---------: | :-----------------------------------------------------------: | :--------------: | :-----------------: |
-| AddressBook |                 contacts @ArrayList<Contact>                  |  searchByName()  | @ArrayList<Contact> |
-|   Contact   |                         name @String                          |    getName()     |       @String       |
-|             |                         email @String                         |    getEmail()    |       @String       |
-|             |                      phoneNumber @String                      | getPhoneNumber() |       @String       |
-|             |                            id @int                            |                  |        @int         |
-|             | constructor(name @String, email @String, phoneNumber @String) |                  |        @void        |
+|   Object    |                          Properties                           |       Messages        |       Output        |
+| :---------: | :-----------------------------------------------------------: | :-------------------: | :-----------------: |
+| AddressBook |                 contacts @ArrayList<Contact>                  | searchByName(@String) | @ArrayList<Contact> |
+|   Contact   |                         name @String                          |       getName()       |       @String       |
+|             |                         email @String                         |      getEmail()       |       @String       |
+|             |                      phoneNumber @String                      |   getPhoneNumber()    |       @String       |
+|             |                            id @int                            |                       |        @int         |
+|             | constructor(name @String, email @String, phoneNumber @String) |                       |        @void        |
 
 ##### Test Cases:-
 - searchContacts() should display the correct contact when the name is entered.
@@ -58,14 +58,14 @@ As a user, <br>
 I want to be able to remove a contact from the address book, <br>
 So that I can the address book does not contain unnecessary contacts. <br>
 
-|   Object    |                          Properties                           |     Messages     | Output  |
-| :---------: | :-----------------------------------------------------------: | :--------------: | :-----: |
-| AddressBook |                 contacts @ArrayList<Contact>                  | removeContact()  |  @void  |
-|   Contact   |                         name @String                          |    getName()     | @String |
-|             |                         email @String                         |    getEmail()    | @String |
-|             |                      phoneNumber @String                      | getPhoneNumber() | @String |
-|             |                            id @int                            |                  |         |
-|             | constructor(name @String, email @String, phoneNumber @String) |                  |  @void  |
+|   Object    |                          Properties                           |        Messages         | Output  |
+| :---------: | :-----------------------------------------------------------: | :---------------------: | :-----: |
+| AddressBook |                 contacts @ArrayList<Contact>                  | removeContact(@Contact) |  @void  |
+|   Contact   |                         name @String                          |        getName()        | @String |
+|             |                         email @String                         |       getEmail()        | @String |
+|             |                      phoneNumber @String                      |    getPhoneNumber()     | @String |
+|             |                            id @int                            |                         |         |
+|             | constructor(name @String, email @String, phoneNumber @String) |                         |  @void  |
 
 ##### Test Cases:-
 - The length of the contacts array should decrease by 1 (When removeContact() is called).
@@ -80,14 +80,14 @@ As a user, <br>
 I want to be able to edit contact details, <br>
 So that I can keep the contact information up to date. <br>
 
-|   Object    |                          Properties                           |     Messages     | Output |
-| :---------: | :-----------------------------------------------------------: | :--------------: | :----: |
-| AddressBook |                 contacts @ArrayList<Contact>                  |  editContact()   | @void  |
-|   Contact   |                         name @String                          |    setName()     | @void  |
-|             |                         email @String                         |    setEmail()    | @void  |
-|             |                      phoneNumber @String                      | setPhoneNumber() | @void  |
-|             |                            id @int                            |                  |        |
-|             | constructor(name @String, email @String, phoneNumber @String) |                  | @void  |
+|   Object    |                          Properties                           |                   Messages                   | Output |
+| :---------: | :-----------------------------------------------------------: | :------------------------------------------: | :----: |
+| AddressBook |                 contacts @ArrayList<Contact>                  | editContact(@int, @String, @String, @String) | @void  |
+|   Contact   |                         name @String                          |               setName(@String)               | @void  |
+|             |                         email @String                         |              setEmail(@String)               | @void  |
+|             |                      phoneNumber @String                      |           setPhoneNumber(@String)            | @void  |
+|             |                            id @int                            |                                              |        |
+|             | constructor(name @String, email @String, phoneNumber @String) |                                              | @void  |
 
 ##### Test Cases:-
 - Use editContact() to modify contact details by specifying the contact's ID.
@@ -105,17 +105,17 @@ As a user, <br>
 I want the software to prevent me from adding contacts that already exists in the address book, <br>
 So that I can avoid having duplicate contacts. <br>
 
-|   Object    |                          Properties                           |        Messages        |  Output  |
-| :---------: | :-----------------------------------------------------------: | :--------------------: | :------: |
-| AddressBook |                 contacts @ArrayList<Contact>                  |      addContact()      |  @void   |
-|             |                                                               |     editContact()      |  @void   |
-|             |                                                               | doesPhoneNumberExist() | @boolean |
-|             |                                                               |    doesEmailExist()    | @boolean |
-|   Contact   |                         name @String                          |       getName()        | @String  |
-|             |                         email @String                         |       getEmail()       | @String  |
-|             |                      phoneNumber @String                      |    getPhoneNumber()    | @String  |
-|             |                            id @int                            |                        |   @int   |
-|             | constructor(name @String, email @String, phoneNumber @String) |                        |  @void   |
+|   Object    |                          Properties                           |                   Messages                   |  Output  |
+| :---------: | :-----------------------------------------------------------: | :------------------------------------------: | :------: |
+| AddressBook |                 contacts @ArrayList<Contact>                  |             addContact(@Contact)             |  @void   |
+|             |                                                               | editContact(@int, @String, @String, @String) |  @void   |
+|             |                                                               |            doesPhoneNumberExist()            | @boolean |
+|             |                                                               |               doesEmailExist()               | @boolean |
+|   Contact   |                         name @String                          |                  getName()                   | @String  |
+|             |                         email @String                         |                  getEmail()                  | @String  |
+|             |                      phoneNumber @String                      |               getPhoneNumber()               | @String  |
+|             |                            id @int                            |                                              |   @int   |
+|             | constructor(name @String, email @String, phoneNumber @String) |                                              |  @void   |
 
 ##### Test Cases:-
 - In addContact(), if the provided phone number or email already exists in the address book, the entry should be rejected.
