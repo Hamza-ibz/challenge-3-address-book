@@ -109,8 +109,8 @@ So that I can avoid having duplicate contacts. <br>
 | :---------: | :-----------------------------------------------------------: | :------------------------------------------: | :------: |
 | AddressBook |                 contacts @ArrayList<Contact>                  |             addContact(@Contact)             |  @void   |
 |             |                                                               | editContact(@int, @String, @String, @String) |  @void   |
-|             |                                                               |            doesPhoneNumberExist()            | @boolean |
-|             |                                                               |               doesEmailExist()               | @boolean |
+|             |                                                               |     doesPhoneNumberExist(@int, @String)      | @boolean |
+|             |                                                               |        doesEmailExist(@int, @String)         | @boolean |
 |   Contact   |                         name @String                          |                  getName()                   | @String  |
 |             |                         email @String                         |                  getEmail()                  | @String  |
 |             |                      phoneNumber @String                      |               getPhoneNumber()               | @String  |
