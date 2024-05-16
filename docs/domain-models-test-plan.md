@@ -171,7 +171,7 @@ Generative AI has been used to help write the following user stories and domain 
 
 As a user, <br>
 I want to search for a contact by phone number, <br>
-So that I can quickly find their details when needed.. <br>
+So that I can quickly find their details when needed. <br>
 
 |   Object    |                          Properties                           |     Messages     | Output  |
 | :---------: | :-----------------------------------------------------------: | :--------------: | :-----: |
@@ -188,6 +188,92 @@ So that I can quickly find their details when needed.. <br>
 - Non-existent Phone Number
 - Empty Phone Number
 
+#### User story 9:-
+
+##### Chat gpt:-
+<p float="left">
+  <img src="Generative-AI-Images/domain-model-9-AI.png" width="200" />
+  <img src="Generative-AI-Images/user-story-9-AI.png" width="200" />
+  <img src="Generative-AI-Images/test-cases-9-AI.png" width="200" />
+</p>
+
+
+As a user of the Address Book application, <br>
+I want the ability to search for contacts using their email addresses, <br>
+So that I can quickly locate specific contacts by their email addresses and view their details. <br>
+
+|   Object    |                          Properties                           |     Messages     | Output  |
+| :---------: | :-----------------------------------------------------------: | :--------------: | :-----: |
+| AddressBook |                 contacts @ArrayList<Contact>                  | searchByEmail()  | @String |
+|   Contact   |                         name @String                          |    getName()     | @String |
+|             |                         email @String                         |    getEmail()    | @String |
+|             |                      phoneNumber @String                      | getPhoneNumber() | @String |
+|             |                            id @int                            |                  |  @int   |
+|             | constructor(name @String, email @String, phoneNumber @String) |                  |  @void  |
+
+##### Test Cases:-
+- Valid Email Search
+- Invalid Email Search
+- Non-existent Email 
+- Empty Email Search
+
+#### User story 10:-
+
+##### Chat gpt:-
+<p float="left">
+  <img src="Generative-AI-Images/domain-model-10-AI.png" width="200" />
+  <img src="Generative-AI-Images/user-story-10-AI.png" width="200" />
+  <img src="Generative-AI-Images/test-cases-10-AI.png" width="200" />
+</p>
+
+
+As a user of the Address Book application,
+<br>I want to search for contacts by their name, phone number, or email address,
+<br>So that I can easily find and retrieve contact information using different criteria.
+<br>Additionally, I want the search results to be displayed in alphabetical order,
+<br>So that I can quickly locate the desired contact among the search results.
+
+|   Object    |                          Properties                           |     Messages     | Output  |
+| :---------: | :-----------------------------------------------------------: | :--------------: | :-----: |
+| AddressBook |                 contacts @ArrayList<Contact>                  | searchService()  | @String |
+|   Contact   |                         name @String                          |    getName()     | @String |
+|             |                         email @String                         |    getEmail()    | @String |
+|             |                      phoneNumber @String                      | getPhoneNumber() | @String |
+|             |                            id @int                            |                  |  @int   |
+|             | constructor(name @String, email @String, phoneNumber @String) |                  |  @void  |
+
+##### Test Cases:-
+- Valid Single Contact
+- Invalid Multiple Contacts
+- Same Starting Letter
+- Mixed Upper and Lower Case Names
+
+#### User story 11:-
+
+##### Chat gpt:-
+<p float="left">
+  <img src="Generative-AI-Images/domain-model-11-AI.png" width="200" />
+  <img src="Generative-AI-Images/user-story-11-AI.png" width="200" />
+  <img src="Generative-AI-Images/test-cases-11-AI.png" width="200" />
+</p>
+
+
+<br>As a user of the Address Book application,
+<br>I want the ability to delete all contacts at once,
+<br>So that I can easily clear my address book when needed.
+<br>Additionally, I want to be prompted for confirmation before proceeding with the deletion,
+<br>To prevent accidental deletion of all contacts.
+
+|   Object    |          Properties          |     Messages      | Output |
+| :---------: | :--------------------------: | :---------------: | :----: |
+| AddressBook | contacts @ArrayList<Contact> | deletionService() | @void  |
+
+
+##### Test Cases:-
+- Confirmation Prompt Displayed
+- Confirmation Denied
+- Confirmation Accepted
+- Empty Address Book
 
 
 ### Class Diagram
