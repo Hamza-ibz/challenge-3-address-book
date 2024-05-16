@@ -65,6 +65,21 @@ public class AddressBookTest {
             assertEquals(contactTest2, addressBookTest.getContacts().get(addressBookTest.getContacts().size() - 1));
         }
 
+        @Test
+        @DisplayName("The addContact() function should not allow null values for Name and throws IllegalArgumentException.")
+        void testContactNameForNullValueWhenAddContactIsCalledThrowsIllegalArgumentException() {
+            // Arrange
+            AddressBook testAddressBook = new AddressBook();
+            Contact testContact = mock(Contact.class);
+            when(testContact.getEmail()).thenReturn("test@test.com");
+            when(testContact.getName()).thenReturn(null);
+            when(testContact.getPhoneNumber()).thenReturn("07828374928");
+
+            // Act
+            // Assert
+            assertThrows(IllegalArgumentException.class, () -> {testAddressBook.addContact(testContact);});
+        }
+
 
     }
 }
