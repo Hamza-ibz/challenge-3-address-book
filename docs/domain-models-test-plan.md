@@ -160,8 +160,12 @@ So that I can see my results by using the software. <br>
 Generative AI has been used to help write the following user stories and domain models.
 
 #### User story 8:-
-<img src="Generative-AI-Images/domain-model-8-AI.png" width="200" style="display: inline; margin: 0 auto" />
-<img src="Generative-AI-Images/user-story-8-AI.png" width="200"   style="display: inline; margin: 0 auto" />
+
+<p float="left">
+  <img src="Generative-AI-Images/domain-model-8-AI.png" width="200" />
+  <img src="Generative-AI-Images/user-story-8-AI.png" width="200" />
+</p>
+
 
 As a user, <br>
 I want to search for a contact by phone number, <br>
