@@ -10,14 +10,14 @@ As a user, <br>
 I want to be able to add a contact to the address book (name, phone number and email address), <br>
 So that I can save the contact for future use. <br>
 
-|   Object    |                          Properties                           |     Messages     | Output  |
-| :---------: | :-----------------------------------------------------------: | :--------------: | :-----: |
-| AddressBook |                 contacts @ArrayList<Contact>                  |   addContact()   |  @void  |
-|   Contact   |                         name @String                          |    setName()     | @String |
-|             |                         email @String                         |    setEmail()    | @String |
-|             |                      phoneNumber @String                      | setPhoneNumber() | @String |
-|             |                            id @int                            |                  |  @int   |
-|             | constructor(name @String, email @String, phoneNumber @String) |                  |  @void  |
+|   Object    |                          Properties                           |     Messages     | Output |
+| :---------: | :-----------------------------------------------------------: | :--------------: | :----: |
+| AddressBook |                 contacts @ArrayList<Contact>                  |   addContact()   | @void  |
+|   Contact   |                         name @String                          |    setName()     | @void  |
+|             |                         email @String                         |    setEmail()    | @void  |
+|             |                      phoneNumber @String                      | setPhoneNumber() | @void  |
+|             |                            id @int                            |                  |        |
+|             | constructor(name @String, email @String, phoneNumber @String) |                  | @void  |
 
 ##### Test Cases:-
 - addContact() should add an entry to the contact arraylist<>.
@@ -35,14 +35,14 @@ As a user, <br>
 I want to be able to search for a contact by name, <br>
 So that I can save time finding the contact. <br>
 
-|   Object    |                          Properties                           |     Messages     | Output  |
-| :---------: | :-----------------------------------------------------------: | :--------------: | :-----: |
-| AddressBook |                 contacts @ArrayList<Contact>                  |  searchByName()  | @String |
-|   Contact   |                         name @String                          |    getName()     | @String |
-|             |                         email @String                         |    getEmail()    | @String |
-|             |                      phoneNumber @String                      | getPhoneNumber() | @String |
-|             |                            id @int                            |                  |  @int   |
-|             | constructor(name @String, email @String, phoneNumber @String) |                  |  @void  |
+|   Object    |                          Properties                           |     Messages     |       Output        |
+| :---------: | :-----------------------------------------------------------: | :--------------: | :-----------------: |
+| AddressBook |                 contacts @ArrayList<Contact>                  |  searchByName()  | @ArrayList<Contact> |
+|   Contact   |                         name @String                          |    getName()     |       @String       |
+|             |                         email @String                         |    getEmail()    |       @String       |
+|             |                      phoneNumber @String                      | getPhoneNumber() |       @String       |
+|             |                            id @int                            |                  |        @int         |
+|             | constructor(name @String, email @String, phoneNumber @String) |                  |        @void        |
 
 ##### Test Cases:-
 - searchContacts() should display the correct contact when the name is entered.
@@ -64,7 +64,7 @@ So that I can the address book does not contain unnecessary contacts. <br>
 |   Contact   |                         name @String                          |    getName()     | @String |
 |             |                         email @String                         |    getEmail()    | @String |
 |             |                      phoneNumber @String                      | getPhoneNumber() | @String |
-|             |                            id @int                            |                  |  @int   |
+|             |                            id @int                            |                  |         |
 |             | constructor(name @String, email @String, phoneNumber @String) |                  |  @void  |
 
 ##### Test Cases:-
@@ -80,14 +80,14 @@ As a user, <br>
 I want to be able to edit contact details, <br>
 So that I can keep the contact information up to date. <br>
 
-|   Object    |                          Properties                           |     Messages     | Output  |
-| :---------: | :-----------------------------------------------------------: | :--------------: | :-----: |
-| AddressBook |                 contacts @ArrayList<Contact>                  |  editContact()   |  @void  |
-|   Contact   |                         name @String                          |    setName()     | @String |
-|             |                         email @String                         |    setEmail()    | @String |
-|             |                      phoneNumber @String                      | setPhoneNumber() | @String |
-|             |                            id @int                            |                  |  @int   |
-|             | constructor(name @String, email @String, phoneNumber @String) |                  |  @void  |
+|   Object    |                          Properties                           |     Messages     | Output |
+| :---------: | :-----------------------------------------------------------: | :--------------: | :----: |
+| AddressBook |                 contacts @ArrayList<Contact>                  |  editContact()   | @void  |
+|   Contact   |                         name @String                          |    setName()     | @void  |
+|             |                         email @String                         |    setEmail()    | @void  |
+|             |                      phoneNumber @String                      | setPhoneNumber() | @void  |
+|             |                            id @int                            |                  |        |
+|             | constructor(name @String, email @String, phoneNumber @String) |                  | @void  |
 
 ##### Test Cases:-
 - Use editContact() to modify contact details by specifying the contact's ID.
@@ -130,9 +130,9 @@ As a user, <br>
 I want to be able to view all contacts in the address book, <br>
 So that I can view all saved contacts. <br>
 
-|   Object    |          Properties          |    Messages    | Output  |
-| :---------: | :--------------------------: | :------------: | :-----: |
-| AddressBook | contacts @ArrayList<Contact> | viewContacts() | @String |
+|   Object    |          Properties          |    Messages    |       Output        |
+| :---------: | :--------------------------: | :------------: | :-----------------: |
+| AddressBook | contacts @ArrayList<Contact> | viewContacts() | @ArrayList<Contact> |
 
 ##### Test Cases:-
 -  getAllContacts() should retrieve and return all contacts currently stored in the address book.
@@ -173,14 +173,14 @@ As a user, <br>
 I want to search for a contact by phone number, <br>
 So that I can quickly find their details when needed. <br>
 
-|   Object    |                          Properties                           |     Messages     | Output  |
-| :---------: | :-----------------------------------------------------------: | :--------------: | :-----: |
-| AddressBook |                 contacts @ArrayList<Contact>                  | searchByPhone()  | @String |
-|   Contact   |                         name @String                          |    getName()     | @String |
-|             |                         email @String                         |    getEmail()    | @String |
-|             |                      phoneNumber @String                      | getPhoneNumber() | @String |
-|             |                            id @int                            |                  |  @int   |
-|             | constructor(name @String, email @String, phoneNumber @String) |                  |  @void  |
+|   Object    |                          Properties                           |        Messages        |       Output        |
+| :---------: | :-----------------------------------------------------------: | :--------------------: | :-----------------: |
+| AddressBook |                 contacts @ArrayList<Contact>                  | searchByPhone(@String) | @ArrayList<Contact> |
+|   Contact   |                         name @String                          |       getName()        |       @String       |
+|             |                         email @String                         |       getEmail()       |       @String       |
+|             |                      phoneNumber @String                      |    getPhoneNumber()    |       @String       |
+|             |                            id @int                            |                        |        @int         |
+|             | constructor(name @String, email @String, phoneNumber @String) |                        |        @void        |
 
 ##### Test Cases:-
 - Valid Phone Number
@@ -202,14 +202,14 @@ As a user of the Address Book application, <br>
 I want the ability to search for contacts using their email addresses, <br>
 So that I can quickly locate specific contacts by their email addresses and view their details. <br>
 
-|   Object    |                          Properties                           |     Messages     | Output  |
-| :---------: | :-----------------------------------------------------------: | :--------------: | :-----: |
-| AddressBook |                 contacts @ArrayList<Contact>                  | searchByEmail()  | @String |
-|   Contact   |                         name @String                          |    getName()     | @String |
-|             |                         email @String                         |    getEmail()    | @String |
-|             |                      phoneNumber @String                      | getPhoneNumber() | @String |
-|             |                            id @int                            |                  |  @int   |
-|             | constructor(name @String, email @String, phoneNumber @String) |                  |  @void  |
+|   Object    |                          Properties                           |        Messages        |       Output        |
+| :---------: | :-----------------------------------------------------------: | :--------------------: | :-----------------: |
+| AddressBook |                 contacts @ArrayList<Contact>                  | searchByEmail(@String) | @ArrayList<Contact> |
+|   Contact   |                         name @String                          |       getName()        |       @String       |
+|             |                         email @String                         |       getEmail()       |       @String       |
+|             |                      phoneNumber @String                      |    getPhoneNumber()    |       @String       |
+|             |                            id @int                            |                        |        @int         |
+|             | constructor(name @String, email @String, phoneNumber @String) |                        |        @void        |
 
 ##### Test Cases:-
 - Valid Email Search
@@ -233,14 +233,14 @@ As a user of the Address Book application,
 <br>Additionally, I want the search results to be displayed in alphabetical order,
 <br>So that I can quickly locate the desired contact among the search results.
 
-|   Object    |                          Properties                           |     Messages     | Output  |
-| :---------: | :-----------------------------------------------------------: | :--------------: | :-----: |
-| AddressBook |                 contacts @ArrayList<Contact>                  | searchService()  | @String |
-|   Contact   |                         name @String                          |    getName()     | @String |
-|             |                         email @String                         |    getEmail()    | @String |
-|             |                      phoneNumber @String                      | getPhoneNumber() | @String |
-|             |                            id @int                            |                  |  @int   |
-|             | constructor(name @String, email @String, phoneNumber @String) |                  |  @void  |
+|   Object    |                          Properties                           |        Messages        |       Output        |
+| :---------: | :-----------------------------------------------------------: | :--------------------: | :-----------------: |
+| AddressBook |                 contacts @ArrayList<Contact>                  | searchService(@String) | @ArrayList<Contact> |
+|   Contact   |                         name @String                          |       getName()        |       @String       |
+|             |                         email @String                         |       getEmail()       |       @String       |
+|             |                      phoneNumber @String                      |    getPhoneNumber()    |       @String       |
+|             |                            id @int                            |                        |        @int         |
+|             | constructor(name @String, email @String, phoneNumber @String) |                        |        @void        |
 
 ##### Test Cases:-
 - Valid Single Contact
@@ -279,20 +279,36 @@ As a user of the Address Book application,
 ### Class Diagram
 ```mermaid
 classDiagram
-    class Contact {
-        -int id
-        -String name 
-        -String email
-        -String phoneNumber
-        -int nextId$
-        +contact(String name, String phoneNumber, String email)
-        +getId() int
-        +getName() String
-        +getEmail() String
-        +getPhoneNumber() String
-        +setEmail(String email) void
-        +setPhoneNumber(String phoneNumber) void
-        +setName(String name) void
+
+ class AddressBook {
+  - List<Contact> contactList
+  + addContact(Contact contact): void
+  + editContact(int id String name, String phoneNumber, String email): void
+  + viewContacts(): List<Contact>
+  + removeContact(Contact contact): void
+  + searchByName(String name): List<Contact>
+  + searchByEmail(String email): List<Contact>
+  + searchByPhoneNumber(String phoneNumber): List<Contact>
+  + searchService(String name): List<Contact>
+  + doesEmailExist(int id, String email): boolean
+  + doesPhoneNumberExist(int id, String phoneNumber): boolean
+  + deletionService(): void
+ }
+ 
+  class Contact {
+    -int id
+    -String name 
+    -String email
+    -String phoneNumber
+    -int idUnique$
+    +contact(String name, String email, String phoneNumber)
+    +getId() int
+    +getName() String
+    +getEmail() String
+    +getPhoneNumber() String
+    +setEmail(String email) void
+    +setPhoneNumber(String phoneNumber) void
+    +setName(String name) void
     }
 
 
