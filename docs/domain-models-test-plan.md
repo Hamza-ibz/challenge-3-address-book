@@ -159,7 +159,23 @@ So that I can see my results by using the software. <br>
 ### Additional Features
 Generative AI has been used to help write the following user stories and domain models.
 
-<img src="Generative-AI-Images/domain-model-8-AI.png" width="200" style="display: block; margin: 0 auto" />
+#### User story 8:-
+<img src="Generative-AI-Images/domain-model-8-AI.png" width="200" style="display: inline; margin: 0 auto" />
+<img src="Generative-AI-Images/user-story-8-AI.png" width="200"   style="display: inline; margin: 0 auto" />
+
+As a user, <br>
+I want to search for a contact by phone number, <br>
+So that I can quickly find their details when needed.. <br>
+
+|   Object    |                          Properties                           |     Messages     | Output  |
+| :---------: | :-----------------------------------------------------------: | :--------------: | :-----: |
+| AddressBook |                 contacts @ArrayList<Contact>                  | searchByPhone()  | @String |
+|   Contact   |                         name @String                          |    getName()     | @String |
+|             |                         email @String                         |    getEmail()    | @String |
+|             |                      phoneNumber @String                      | getPhoneNumber() | @String |
+|             |                            id @int                            |                  |  @int   |
+|             | constructor(name @String, email @String, phoneNumber @String) |                  |  @void  |
+
 
 
 
