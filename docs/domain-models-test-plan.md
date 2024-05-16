@@ -161,9 +161,11 @@ Generative AI has been used to help write the following user stories and domain 
 
 #### User story 8:-
 
+##### Chat gpt:-
 <p float="left">
   <img src="Generative-AI-Images/domain-model-8-AI.png" width="200" />
   <img src="Generative-AI-Images/user-story-8-AI.png" width="200" />
+  <img src="Generative-AI-Images/test-cases-8-AI.png" width="200" />
 </p>
 
 
@@ -180,6 +182,9 @@ So that I can quickly find their details when needed.. <br>
 |             |                            id @int                            |                  |  @int   |
 |             | constructor(name @String, email @String, phoneNumber @String) |                  |  @void  |
 
-
-
+##### Test Cases:-
+- Valid Phone Number
+- Invalid Phone Number
+- Non-existent Phone Number
+- Empty Phone Number
 
