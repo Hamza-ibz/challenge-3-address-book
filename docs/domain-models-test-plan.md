@@ -159,6 +159,7 @@ So that I can see my results by using the software. <br>
 ### Additional Features
 Generative AI has been used to help write the following user stories and domain models.
 
+<img src="domain-model-8-AI.png" width="200" style="display: block; margin: 0 auto" />
 
 
 
