@@ -188,3 +188,26 @@ So that I can quickly find their details when needed.. <br>
 - Non-existent Phone Number
 - Empty Phone Number
 
+
+
+### Class Diagram
+```mermaid
+classDiagram
+    class Contact {
+        -int id
+        -String name 
+        -String email
+        -String phoneNumber
+        -int nextId$
+        +contact(String name, String phoneNumber, String email)
+        +getId() int
+        +getName() String
+        +getEmail() String
+        +getPhoneNumber() String
+        +setEmail(String email) void
+        +setPhoneNumber(String phoneNumber) void
+        +setName(String name) void
+    }
+
+
+
