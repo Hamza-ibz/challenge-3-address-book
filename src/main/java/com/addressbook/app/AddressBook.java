@@ -16,10 +16,22 @@ public class AddressBook {
         if(contact.getPhoneNumber() == null || contact.getPhoneNumber().trim().isEmpty()) {
             throw new IllegalArgumentException("Null or empty value given to Name.");
         }
+        if(phoneNumberAlreadyExists(contact.getPhoneNumber())) {
+            throw new IllegalArgumentException("Phone number is a duplicate");
+        }
         this.contacts.add(contact);
     }
 
     public ArrayList<Contact> getContacts() {
         return contacts;
+    }
+
+    public boolean phoneNumberAlreadyExists(String phoneNumber) {
+        for(Contact contact : contacts) {
+            if(contact.getPhoneNumber().equals(phoneNumber)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

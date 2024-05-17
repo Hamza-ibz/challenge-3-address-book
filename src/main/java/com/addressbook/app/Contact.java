@@ -11,6 +11,8 @@ public class Contact {
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.id = idUnique;
+        idUnique++;
     }
 
     public int getId() {

@@ -24,9 +24,9 @@ So that I can save the contact for future use. <br>
 - When addContact() is called, the length of the contacts array should increase by 1.
 - After adding a contact, the latest contact in the array should be the one you just added.
 - The addContact() function should not allow null values.
-- If a phone number already exist in the address book, you can't add the contact.
-- If an email address already exist in the address book, you can't add the contact.
-- Even if the email address has the same letters but different capitalization, you still can't add the contact.
+- Contact is not added if phone number exist in the address book (duplicate phone numbers).
+- Contact is not added if email  exist in the address book (duplicate email addresses).
+- Contact is not added even if email is a duplicate with different capitalization.
 
 
 #### User story 2:-
@@ -109,8 +109,8 @@ So that I can avoid having duplicate contacts. <br>
 | :---------: | :-----------------------------------------------------------: | :------------------------------------------: | :------: |
 | AddressBook |                 contacts @ArrayList<Contact>                  |             addContact(@Contact)             |  @void   |
 |             |                                                               | editContact(@int, @String, @String, @String) |  @void   |
-|             |                                                               |     doesPhoneNumberExist(@int, @String)      | @boolean |
-|             |                                                               |        doesEmailExist(@int, @String)         | @boolean |
+|             |                                                               |        doesPhoneNumberExist(@String)         | @boolean |
+|             |                                                               |           doesEmailExist(@String)            | @boolean |
 |   Contact   |                         name @String                          |                  getName()                   | @String  |
 |             |                         email @String                         |                  getEmail()                  | @String  |
 |             |                      phoneNumber @String                      |               getPhoneNumber()               | @String  |
