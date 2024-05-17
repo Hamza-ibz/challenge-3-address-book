@@ -10,6 +10,12 @@ public class AddressBook {
         if(contact.getName() == null || contact.getName().trim().isEmpty()) {
             throw new IllegalArgumentException("Null or empty value given to Name.");
         }
+        if(contact.getEmail() == null || contact.getEmail().trim().isEmpty()) {
+            throw new IllegalArgumentException("Null or empty value given to Name.");
+        }
+        if(contact.getPhoneNumber() == null || contact.getPhoneNumber().trim().isEmpty()) {
+            throw new IllegalArgumentException("Null or empty value given to Name.");
+        }
         this.contacts.add(contact);
     }
 
