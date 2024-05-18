@@ -121,18 +121,35 @@ public class AddressBookTest {
         }
 
         @Test
-        @DisplayName("The addContact() function should not added if phone number exist in the address book (duplicate phone numbers)")
+        @DisplayName("The addContact() function should not add if phone number exist in the address book (duplicate phone numbers), throws IllegalArgumentException")
         void testContactDuplicatePhoneNumbers() {
             // Arrange
             when(contactTest1.getEmail()).thenReturn("test@test.com");
             when(contactTest1.getName()).thenReturn("test");
             when(contactTest1.getPhoneNumber()).thenReturn("07123456789");
-//            System.out.println(contactTest1.getId());
 
             when(contactTest2.getEmail()).thenReturn("Bob@gmail.com");
             when(contactTest2.getName()).thenReturn("Bob Tom");
             when(contactTest2.getPhoneNumber()).thenReturn("07123456789");
-//            System.out.println(contactTest2.getId());
+
+            // Act
+            addressBookTest.addContact(contactTest1);
+
+            // Assert
+            assertThrows(IllegalArgumentException.class, () -> {addressBookTest.addContact(contactTest2);});
+        }
+
+        @Test
+        @DisplayName("The addContact() function should not add if Email exist in the address book (duplicate email), throws IllegalArgumentException")
+        void testContactDuplicateEmail() {
+            // Arrange
+            when(contactTest1.getEmail()).thenReturn("test@test.com");
+            when(contactTest1.getName()).thenReturn("test");
+            when(contactTest1.getPhoneNumber()).thenReturn("07123456734");
+
+            when(contactTest2.getEmail()).thenReturn("test@test.com");
+            when(contactTest2.getName()).thenReturn("Bob Tom");
+            when(contactTest2.getPhoneNumber()).thenReturn("07123456789");
 
             // Act
             addressBookTest.addContact(contactTest1);

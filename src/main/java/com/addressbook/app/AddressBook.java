@@ -19,6 +19,9 @@ public class AddressBook {
         if(phoneNumberAlreadyExists(contact.getPhoneNumber())) {
             throw new IllegalArgumentException("Phone number is a duplicate");
         }
+        if(emailAlreadyExists(contact.getEmail())) {
+            throw new IllegalArgumentException("Email is a duplicate");
+        }
         this.contacts.add(contact);
     }
 
@@ -29,6 +32,15 @@ public class AddressBook {
     public boolean phoneNumberAlreadyExists(String phoneNumber) {
         for(Contact contact : contacts) {
             if(contact.getPhoneNumber().equals(phoneNumber)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean emailAlreadyExists(String email) {
+        for(Contact contact : contacts) {
+            if(contact.getEmail().equals(email)) {
                 return true;
             }
         }
