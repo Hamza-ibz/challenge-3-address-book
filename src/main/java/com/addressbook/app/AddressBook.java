@@ -14,10 +14,10 @@ public class AddressBook {
             throw new IllegalArgumentException("Null or empty value given to Name.");
         }
         if(contact.getEmail() == null || contact.getEmail().trim().isEmpty()) {
-            throw new IllegalArgumentException("Null or empty value given to Name.");
+            throw new IllegalArgumentException("Null or empty value given to Email.");
         }
         if(contact.getPhoneNumber() == null || contact.getPhoneNumber().trim().isEmpty()) {
-            throw new IllegalArgumentException("Null or empty value given to Name.");
+            throw new IllegalArgumentException("Null or empty value given to Phone Number.");
         }
         if(phoneNumberAlreadyExists(contact.getPhoneNumber())) {
             throw new IllegalArgumentException("Phone number is a duplicate");
@@ -48,6 +48,16 @@ public class AddressBook {
             }
         }
         return false;
+    }
+
+    public void removeContact(String phoneNumber) {
+        for (Contact contact : contacts) {
+            if (contact.getPhoneNumber().equals(phoneNumber)) {
+                contacts.remove(contact);
+                return;
+            }
+        }
+        System.out.println("Contact not found.");
     }
 
     public void searchByName(String name) {

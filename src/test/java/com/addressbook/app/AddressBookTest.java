@@ -232,7 +232,7 @@ public class AddressBookTest {
         }
 
         @Test
-        @DisplayName("searchByName() should display message when name doesn't match any contact.")
+        @DisplayName("searchByName() should display message (no contact shown) when name doesn't match any contact.")
         void testSearchContactsByUnknownNameDisplaysMessage() {
             // Arrange
             when(contactTest1.getEmail()).thenReturn("test@test.com");
@@ -280,7 +280,7 @@ public class AddressBookTest {
         }
 
         @Test
-        @DisplayName("searchByName() should display message when empty string entered as name.")
+        @DisplayName("searchByName() should display message (no contact shown) when empty string entered as name.")
         void testSearchContactsByEmptyNameDisplaysMessage() {
             // Arrange
             when(contactTest1.getEmail()).thenReturn("test@test.com");
@@ -303,7 +303,85 @@ public class AddressBookTest {
             assertEquals(2, addressBookTest.getContacts().size());
         }
 
+        @Test
+        @DisplayName("searchByName() should still display contacts if user only type in part of a name.")
+        void testSearchContactsByPartialNameDisplaysContact() {
+            // Arrange
+            when(contactTest1.getEmail()).thenReturn("test@test.com");
+            when(contactTest1.getName()).thenReturn("Jon Smith");
+            when(contactTest1.getPhoneNumber()).thenReturn("07123456734");
 
+            when(contactTest2.getEmail()).thenReturn("bob@Gmail.com");
+            when(contactTest2.getName()).thenReturn("bob beck");
+            when(contactTest2.getPhoneNumber()).thenReturn("07123456789");
+
+            // Act
+            addressBookTest.addContact(contactTest1);
+            addressBookTest.addContact(contactTest2);
+            addressBookTest.searchByName("jo");
+
+
+            // Assert
+//            https://stackoverflow.com/questions/32241057/how-to-test-a-print-method-in-java-using-junit
+            assertEquals("Name: Jon Smith, Email: test@test.com, Phone Number: 07123456734\n", outContent.toString());
+            assertEquals(2, addressBookTest.getContacts().size());
+        }
+
+
+    }
+
+    @Nested
+    @DisplayName("AddressBook remove form contact test")
+    class AddressBookRemoveFromContact{
+        AddressBook addressBookTest;
+        Contact contactTest1;
+        Contact contactTest2;
+
+        @BeforeEach
+        void setUp() {
+            addressBookTest = new AddressBook();
+            contactTest1 = mock(Contact.class);
+
+            when(contactTest1.getEmail()).thenReturn("test@test.com");
+            when(contactTest1.getName()).thenReturn("Test Test");
+            when(contactTest1.getPhoneNumber()).thenReturn("077777777777");
+
+            addressBookTest.addContact(contactTest1);
+
+        }
+
+        public void tearDown(){
+            addressBookTest = null;
+            contactTest1 = null;
+            contactTest2 = null;
+        }
+
+        @Test
+        @DisplayName("When removeContact() is called, The length of the contacts array should decrease by 1")
+        void testRemoveContactByPhoneNumberArrayLengthDecreasedByOne() {
+            // Arrange
+            // Act
+            addressBookTest.removeContact("077777777777");
+
+            // Assert
+            assertEquals(0, addressBookTest.getContacts().size());
+        }
+
+        @Test
+        @DisplayName("Once contact is deleted, should not be able to find it when searching for contacts.")
+        void testSearchingForARemovedContact() {
+            // Arrange
+            ByteArrayOutputStream outContent;
+            outContent = new ByteArrayOutputStream();
+            System.setOut(new PrintStream(outContent));
+            // Act
+            addressBookTest.removeContact("077777777777");
+            addressBookTest.searchByName("Test");
+
+            // Assert
+            assertEquals(0, addressBookTest.getContacts().size());
+            assertEquals("Incorrect name. Please check value entered.\n", outContent.toString());
+        }
     }
 
 }
