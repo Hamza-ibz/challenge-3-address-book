@@ -58,20 +58,19 @@ As a user, <br>
 I want to be able to remove a contact from the address book, <br>
 So that I can the address book does not contain unnecessary contacts. <br>
 
-|   Object    |                          Properties                           |        Messages         | Output  |
-| :---------: | :-----------------------------------------------------------: | :---------------------: | :-----: |
-| AddressBook |                 contacts @ArrayList<Contact>                  | removeContact(@Contact) |  @void  |
-|   Contact   |                         name @String                          |        getName()        | @String |
-|             |                         email @String                         |       getEmail()        | @String |
-|             |                      phoneNumber @String                      |    getPhoneNumber()     | @String |
-|             |                            id @int                            |                         |         |
-|             | constructor(name @String, email @String, phoneNumber @String) |                         |  @void  |
+|   Object    |                          Properties                           |        Messages        | Output  |
+| :---------: | :-----------------------------------------------------------: | :--------------------: | :-----: |
+| AddressBook |                 contacts @ArrayList<Contact>                  | removeContact(@String) |  @void  |
+|   Contact   |                         name @String                          |       getName()        | @String |
+|             |                         email @String                         |       getEmail()       | @String |
+|             |                      phoneNumber @String                      |    getPhoneNumber()    | @String |
+|             |                            id @int                            |                        |         |
+|             | constructor(name @String, email @String, phoneNumber @String) |                        |  @void  |
 
 ##### Test Cases:-
 - The length of the contacts array should decrease by 1 (When removeContact() is called).
-- Every contact in the list should have its own special ID.
 - Once you delete a contact, you shouldn't be able to find it anymore when searching for contacts.
-- If you try to delete a contact with an ID that doesn't exist, you'll get an error message.
+- If you try to delete a contact with a Phone number that doesn't exist, you'll get an error message.
 - The contact that was removed should no longer be in the contacts array (When removeContact() is called).
 
 #### User story 4:-
