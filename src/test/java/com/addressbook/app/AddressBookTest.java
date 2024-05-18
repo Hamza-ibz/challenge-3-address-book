@@ -255,6 +255,30 @@ public class AddressBookTest {
             assertEquals(2, addressBookTest.getContacts().size());
         }
 
+        @Test
+        @DisplayName("searchByName() should display the correct contact when the name is entered regardless of whether the name is in uppercase or lowercase.")
+        void testSearchContactsByCapitalizationNameStateDisplaysContact() {
+            // Arrange
+            when(contactTest1.getEmail()).thenReturn("test@test.com");
+            when(contactTest1.getName()).thenReturn("Jon Smith");
+            when(contactTest1.getPhoneNumber()).thenReturn("07123456734");
+
+            when(contactTest2.getEmail()).thenReturn("bob@Gmail.com");
+            when(contactTest2.getName()).thenReturn("bob beck");
+            when(contactTest2.getPhoneNumber()).thenReturn("07123456789");
+
+            // Act
+            addressBookTest.addContact(contactTest1);
+            addressBookTest.addContact(contactTest2);
+            addressBookTest.searchByName("BOB");
+
+
+            // Assert
+//            https://stackoverflow.com/questions/32241057/how-to-test-a-print-method-in-java-using-junit
+            assertEquals("Name: bob beck, Email: bob@Gmail.com, Phone Number: 07123456789\n", outContent.toString());
+            assertEquals(2, addressBookTest.getContacts().size());
+        }
+
 
     }
 
