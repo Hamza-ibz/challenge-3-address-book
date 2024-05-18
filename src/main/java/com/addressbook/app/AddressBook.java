@@ -59,13 +59,17 @@ public class AddressBook {
         String nameLowerCase = name.toLowerCase();
         ArrayList<Contact> contactsMatch = new ArrayList<>();
         for (Contact contact : contacts) {
-            boolean containsName = contact.getName().toLowerCase().contains(nameLowerCase);
+            boolean containsName = contact.getName().toLowerCase().trim().contains(nameLowerCase.trim());
+
+            if(nameLowerCase==""){
+                containsName=false;
+            }
             if (containsName) {
                 contactsMatch.add(contact);
             }
         }
         if(contactsMatch.isEmpty()){
-            System.out.println("No name found.");
+            System.out.println("Incorrect name. Please check value entered.");
         }
 //        https://stackoverflow.com/questions/19471005/sorting-an-arraylist-of-objects-alphabetically
         Collections.sort(contactsMatch, new Comparator<Contact>() {

@@ -251,7 +251,7 @@ public class AddressBookTest {
 
             // Assert
 //            https://stackoverflow.com/questions/32241057/how-to-test-a-print-method-in-java-using-junit
-            assertEquals("No name found.\n", outContent.toString());
+            assertEquals("Incorrect name. Please check value entered.\n", outContent.toString());
             assertEquals(2, addressBookTest.getContacts().size());
         }
 
@@ -276,6 +276,30 @@ public class AddressBookTest {
             // Assert
 //            https://stackoverflow.com/questions/32241057/how-to-test-a-print-method-in-java-using-junit
             assertEquals("Name: bob beck, Email: bob@Gmail.com, Phone Number: 07123456789\n", outContent.toString());
+            assertEquals(2, addressBookTest.getContacts().size());
+        }
+
+        @Test
+        @DisplayName("searchByName() should display message when empty string entered as name.")
+        void testSearchContactsByEmptyNameDisplaysMessage() {
+            // Arrange
+            when(contactTest1.getEmail()).thenReturn("test@test.com");
+            when(contactTest1.getName()).thenReturn("Jon Smith");
+            when(contactTest1.getPhoneNumber()).thenReturn("07123456734");
+
+            when(contactTest2.getEmail()).thenReturn("bob@Gmail.com");
+            when(contactTest2.getName()).thenReturn("bob beck");
+            when(contactTest2.getPhoneNumber()).thenReturn("07123456789");
+
+            // Act
+            addressBookTest.addContact(contactTest1);
+            addressBookTest.addContact(contactTest2);
+            addressBookTest.searchByName("");
+
+
+            // Assert
+//            https://stackoverflow.com/questions/32241057/how-to-test-a-print-method-in-java-using-junit
+            assertEquals("Incorrect name. Please check value entered.\n", outContent.toString());
             assertEquals(2, addressBookTest.getContacts().size());
         }
 
