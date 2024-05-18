@@ -5,9 +5,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class AddressBookTest {
     @Nested
@@ -179,4 +181,59 @@ public class AddressBookTest {
 
 
     }
+    @Nested
+    @DisplayName("AddressBook Search for contact test")
+    class AddressBookSearchContactTests {
+        private ByteArrayOutputStream outContent;
+//        private PrintStream SystemOutSpy;
+//        private PrintStream SystemErrSpy;
+        AddressBook addressBookTest;
+        Contact contactTest1;
+        Contact contactTest2;
+
+        @BeforeEach
+        void setUp() {
+            addressBookTest = new AddressBook();
+            contactTest1 = mock(Contact.class);
+            contactTest2 = mock(Contact.class);
+
+//            https://stackoverflow.com/questions/32241057/how-to-test-a-print-method-in-java-using-junit
+            outContent = new ByteArrayOutputStream();
+            System.setOut(new PrintStream(outContent));
+        }
+
+
+        public void tearDown(){
+            addressBookTest = null;
+            contactTest1 = null;
+            contactTest2 = null;
+        }
+
+        @Test
+        @DisplayName("searchContacts() should display the correct contact when the name is entered.")
+        void testSearchContactsByNameDisplaysContact() {
+            // Arrange
+            when(contactTest1.getEmail()).thenReturn("test@test.com");
+            when(contactTest1.getName()).thenReturn("Jon Smith");
+            when(contactTest1.getPhoneNumber()).thenReturn("07123456734");
+
+            when(contactTest2.getEmail()).thenReturn("Bob@Gmail.com");
+            when(contactTest2.getName()).thenReturn("Bob Beck");
+            when(contactTest2.getPhoneNumber()).thenReturn("07123456789");
+
+            // Act
+            addressBookTest.addContact(contactTest1);
+            addressBookTest.addContact(contactTest2);
+            addressBookTest.searchByName("Bob");
+
+
+            // Assert
+//            https://stackoverflow.com/questions/32241057/how-to-test-a-print-method-in-java-using-junit
+            assertEquals("Name: Bob Beck, Email: Bob@Gmail.com, Phone Number: 07123456789\n", outContent.toString());
+            assertEquals(2, addressBookTest.getContacts().size());
+        }
+
+
+    }
+
 }

@@ -1,6 +1,9 @@
 package com.addressbook.app;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 public class AddressBook {
 
@@ -45,5 +48,34 @@ public class AddressBook {
             }
         }
         return false;
+    }
+
+    public void searchByName(String name) {
+        ArrayList<Contact> contactsMatch = SortByName(name);
+        printContactsSorted(contactsMatch);
+    }
+
+    private ArrayList<Contact> SortByName(String name) {
+        String nameLowerCase = name.toLowerCase();
+        ArrayList<Contact> contactsMatch = new ArrayList<>();
+        for (Contact contact : contacts) {
+            boolean containsName = contact.getName().toLowerCase().contains(nameLowerCase);
+            if (containsName) {
+                contactsMatch.add(contact);
+            }
+        }
+//        https://stackoverflow.com/questions/19471005/sorting-an-arraylist-of-objects-alphabetically
+        Collections.sort(contactsMatch, new Comparator<Contact>() {
+            public int compare(Contact v1, Contact v2) {
+                return v1.getName().compareTo(v2.getName());
+            }
+        });
+        return contactsMatch;
+    }
+
+    private void printContactsSorted(ArrayList<Contact> contactsMatch) {
+        for (Contact contact : contactsMatch) {
+            System.out.println("Name: " + contact.getName() + ", Email: " + contact.getEmail() + ", Phone Number: " + contact.getPhoneNumber());
+        }
     }
 }
