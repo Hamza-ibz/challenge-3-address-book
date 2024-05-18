@@ -71,7 +71,6 @@ So that I can the address book does not contain unnecessary contacts. <br>
 - The length of the contacts array should decrease by 1 (When removeContact() is called).
 - Once you delete a contact, you shouldn't be able to find it anymore when searching for contacts.
 - If you try to delete a contact with a Phone number that doesn't exist, you'll get an error message.
-- The contact that was removed should no longer be in the contacts array (When removeContact() is called).
 
 #### User story 4:-
 
@@ -89,13 +88,13 @@ So that I can keep the contact information up to date. <br>
 |             | constructor(name @String, email @String, phoneNumber @String) |                                              | @void  |
 
 ##### Test Cases:-
+- You can use editContact() to update various fields of the contact, including name, email, and phone number.
 - Use editContact() to modify contact details by specifying the contact's ID.
 - If you try to edit a contact with an ID that doesn't exist, you'll receive an error message.
 - The function should reject any changes that don't meet the required format.
 - If a null value is passed as the name parameter to editContact, the contact should not be updated.
 - If the phone number provided to editContact already exists in the address book, the contact should not be updated.
 - Similarly, if the email passed to editContact already exists in the address book, the contact should not be updated.
-- You can use editContact() to update various fields of the contact, including name, email, and phone number.
 - The editContact() function should work properly even if you edit multiple contacts in a row.
 
 #### User story 5:-

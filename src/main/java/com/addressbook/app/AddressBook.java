@@ -1,9 +1,6 @@
 package com.addressbook.app;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class AddressBook {
 
@@ -50,9 +47,9 @@ public class AddressBook {
         return false;
     }
 
-    public void removeContact(String phoneNumber) {
+    public void removeContact(int id) {
         for (Contact contact : contacts) {
-            if (contact.getPhoneNumber().equals(phoneNumber)) {
+            if (contact.getId()==id) {
                 contacts.remove(contact);
                 return;
             }
@@ -94,5 +91,18 @@ public class AddressBook {
         for (Contact contact : contactsMatch) {
             System.out.println("Name: " + contact.getName() + ", Email: " + contact.getEmail() + ", Phone Number: " + contact.getPhoneNumber());
         }
+    }
+
+    public void editContact(int id, String newName, String NewEmail, String newPhoneNumber) {
+        for (Contact contact : contacts) {
+            if (contact.getId() == id && !(emailAlreadyExists(NewEmail) || phoneNumberAlreadyExists(newPhoneNumber)) ) {
+                contact.setName(newName);
+                contact.setEmail(NewEmail);
+                contact.setPhoneNumber(newPhoneNumber);
+                System.out.println( "Name: " + newName + ", Email: " + NewEmail + ", Phone Number: " + newPhoneNumber);
+                return;
+            }
+        }
+        System.out.println("contact not found. Please check ID.");
     }
 }

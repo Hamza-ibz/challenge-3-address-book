@@ -361,7 +361,7 @@ public class AddressBookTest {
         void testRemoveContactByPhoneNumberArrayLengthDecreasedByOne() {
             // Arrange
             // Act
-            addressBookTest.removeContact("077777777777");
+            addressBookTest.removeContact(contactTest1.getId());
 
             // Assert
             assertEquals(0, addressBookTest.getContacts().size());
@@ -375,13 +375,87 @@ public class AddressBookTest {
             outContent = new ByteArrayOutputStream();
             System.setOut(new PrintStream(outContent));
             // Act
-            addressBookTest.removeContact("077777777777");
+            addressBookTest.removeContact(contactTest1.getId());
             addressBookTest.searchByName("Test");
 
             // Assert
             assertEquals(0, addressBookTest.getContacts().size());
             assertEquals("Incorrect name. Please check value entered.\n", outContent.toString());
         }
+
+        @Test
+        @DisplayName(" Remove a contact with id that doesn't exist, shows an error message.")
+        void testRemovedContactWithPhoneNumberThatDoesNotExist() {
+            // Arrange
+            ByteArrayOutputStream outContent;
+            outContent = new ByteArrayOutputStream();
+            System.setOut(new PrintStream(outContent));
+            // Act
+            addressBookTest.removeContact(1);
+
+            // Assert
+            assertEquals(1, addressBookTest.getContacts().size());
+            assertEquals("Contact not found.\n", outContent.toString());
+        }
+    }
+
+    @Nested
+    @DisplayName("AddressBook edit contact")
+    class AddressBookEditContactTests{
+
+        private ByteArrayOutputStream outContent;
+        AddressBook addressBookTest;
+        Contact contactTest1;
+
+
+        @BeforeEach
+        void setUp() {
+            addressBookTest = new AddressBook();
+            contactTest1 = mock(Contact.class);
+
+            when(contactTest1.getEmail()).thenReturn("test@test.com");
+            when(contactTest1.getName()).thenReturn("Test Test");
+            when(contactTest1.getPhoneNumber()).thenReturn("077777777777");
+
+            addressBookTest.addContact(contactTest1);
+
+            outContent = new ByteArrayOutputStream();
+            System.setOut(new PrintStream(outContent));
+
+        }
+
+        public void tearDown(){
+            addressBookTest = null;
+            contactTest1 = null;
+        }
+
+        @Test
+        @DisplayName("test editContact() updates various fields of the contact, including name, email, and phone number.")
+        public void testEditAllContactFields() {
+
+            //Arrange
+
+            //Act
+            addressBookTest.editContact(contactTest1.getId(),"Tionge Jools","TiongeJools@gmail.com", "07839467583" );
+
+            // Assert
+            assertEquals("Name: Tionge Jools, Email: TiongeJools@gmail.com, Phone Number: 07839467583\n", outContent.toString() );
+        }
+
+        @Test
+        @DisplayName("test editContact() updates various fields of the contact, including name, email, and phone number.")
+        public void testEditContactWithIncorrectId() {
+
+            //Arrange
+
+            //Act
+            addressBookTest.editContact(5,"Tionge Jools","TiongeJools@gmail.com", "07839467583" );
+
+            // Assert
+            assertEquals("contact not found. Please check ID.\n", outContent.toString() );
+        }
+
+
     }
 
 }

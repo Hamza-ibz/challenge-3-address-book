@@ -1,5 +1,6 @@
 package com.addressbook.app;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class App {
@@ -12,8 +13,16 @@ public class App {
         try {
             addressBook.addContact(contact);
             addressBook.addContact(contact1);
-            addressBook.searchByName("Test");
-            System.out.println("New contact has been added");
+            for(int i = 0; i < addressBook.getContacts().size(); i++) {
+                System.out.print(addressBook.getContacts().get(i).getName());
+                System.out.print(addressBook.getContacts().get(i).getId()+"\n");
+            }
+            addressBook.editContact(1,"bob","test@test","0712345");
+
+            for(int i = 0; i < addressBook.getContacts().size(); i++) {
+                System.out.print(addressBook.getContacts().get(i).getName());
+                System.out.print(addressBook.getContacts().get(i).getId()+"\n");
+            }
         }
         catch(Exception e) {
             System.out.println(e.getMessage());
