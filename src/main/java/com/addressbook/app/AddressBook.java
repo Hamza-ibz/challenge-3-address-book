@@ -64,6 +64,9 @@ public class AddressBook {
                 contactsMatch.add(contact);
             }
         }
+        if(contactsMatch.isEmpty()){
+            System.out.println("No name found.");
+        }
 //        https://stackoverflow.com/questions/19471005/sorting-an-arraylist-of-objects-alphabetically
         Collections.sort(contactsMatch, new Comparator<Contact>() {
             public int compare(Contact v1, Contact v2) {
