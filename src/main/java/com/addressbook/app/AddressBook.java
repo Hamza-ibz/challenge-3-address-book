@@ -40,7 +40,7 @@ public class AddressBook {
 
     public boolean emailAlreadyExists(String email) {
         for(Contact contact : contacts) {
-            if(contact.getEmail().equals(email)) {
+            if(contact.getEmail().toLowerCase().equals(email.toLowerCase())) {
                 return true;
             }
         }

@@ -158,6 +158,25 @@ public class AddressBookTest {
             assertThrows(IllegalArgumentException.class, () -> {addressBookTest.addContact(contactTest2);});
         }
 
+        @Test
+        @DisplayName("The addContact() function should not add if the Email has the same letters but different capitalization in the address book (duplicate email), throws IllegalArgumentException")
+        void testContactDuplicateEmailCapitalization() {
+            // Arrange
+            when(contactTest1.getEmail()).thenReturn("test@test.com");
+            when(contactTest1.getName()).thenReturn("test");
+            when(contactTest1.getPhoneNumber()).thenReturn("07123456734");
+
+            when(contactTest2.getEmail()).thenReturn("Test@test.com");
+            when(contactTest2.getName()).thenReturn("Bob Tom");
+            when(contactTest2.getPhoneNumber()).thenReturn("07123456789");
+
+            // Act
+            addressBookTest.addContact(contactTest1);
+
+            // Assert
+            assertThrows(IllegalArgumentException.class, () -> {addressBookTest.addContact(contactTest2);});
+        }
+
 
     }
 }
