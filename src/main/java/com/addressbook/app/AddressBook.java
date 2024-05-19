@@ -64,6 +64,20 @@ public class AddressBook {
             System.out.println("Name: " + contact.getName() + ", Email: " + contact.getEmail() + ", Phone Number: " + contact.getPhoneNumber());
         }
     }
+    public void searchByPhoneNumber(String phoneNumber) {
+        ArrayList<Contact> contactsMatch = SortByName(phoneNumber);
+        for (Contact contact : contactsMatch) {
+            System.out.println("Name: " + contact.getName() + ", Email: " + contact.getEmail() + ", Phone Number: " + contact.getPhoneNumber());
+        }
+    }
+    public void searchByEmail(String email) {
+        ArrayList<Contact> contactsMatch = SortByName(email);
+        for (Contact contact : contactsMatch) {
+            System.out.println("Name: " + contact.getName() + ", Email: " + contact.getEmail() + ", Phone Number: " + contact.getPhoneNumber());
+        }
+    }
+
+
 
     private ArrayList<Contact> SortByName(String name) {
         String nameLowerCase = name.toLowerCase();
@@ -134,5 +148,10 @@ public class AddressBook {
         }
         stringBuilder.append("============================================================================\n");
         return stringBuilder.toString();
+    }
+
+    public void deletionService() {
+        contacts.clear();
+        System.out.println("All contacts are deleted. Address book is empty.");
     }
 }

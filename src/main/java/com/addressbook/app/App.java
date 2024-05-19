@@ -14,7 +14,7 @@ public class App {
             addressBook.addContact(contact);
             addressBook.addContact(contact1);
 
-            System.out.println(addressBook.viewContacts());
+           addressBook.deletionService();
         }
         catch(Exception e) {
             System.out.println(e.getMessage());
