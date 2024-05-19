@@ -30,6 +30,15 @@ public class AddressBook {
         return contacts;
     }
 
+    public Contact getContactId(int id) {
+        for (Contact contact : contacts) {
+            if (contact.getId()==id) {
+                return contact;
+            }
+        }
+        return new Contact();
+    }
+
     public boolean phoneNumberAlreadyExists(String phoneNumber) {
         for(Contact contact : contacts) {
             if(contact.getPhoneNumber().equals(phoneNumber)) {
@@ -117,6 +126,7 @@ public class AddressBook {
                     contact.setName(newName);
                     contact.setEmail(NewEmail);
                     contact.setPhoneNumber(newPhoneNumber);
+                    System.out.println("Contact successfully changed:-");
                     System.out.println("Name: " + newName + ", Email: " + NewEmail + ", Phone Number: " + newPhoneNumber);
                     return;
                 }

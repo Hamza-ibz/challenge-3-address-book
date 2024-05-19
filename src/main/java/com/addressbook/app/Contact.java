@@ -21,6 +21,10 @@ public class Contact {
         idUnique++;
     }
 
+    public Contact() {
+
+    }
+
     public int getId() {
         return id;
     }
