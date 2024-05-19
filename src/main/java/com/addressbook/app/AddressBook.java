@@ -70,7 +70,7 @@ public class AddressBook {
     public void searchByName(String name) {
         ArrayList<Contact> contactsMatch = SortByName(name);
         for (Contact contact : contactsMatch) {
-            System.out.println("Name: " + contact.getName() + ", Email: " + contact.getEmail() + ", Phone Number: " + contact.getPhoneNumber());
+            System.out.println("Id: " + contact.getId() +" | "+ " Name: " + contact.getName() + " | "+" Email: " + contact.getEmail() + " | "+" Phone Number: " + contact.getPhoneNumber());
         }
     }
     public void searchByPhoneNumber(String phoneNumber) {
@@ -105,11 +105,15 @@ public class AddressBook {
             System.out.println("Incorrect name. Please check value entered.");
         }
 //        https://stackoverflow.com/questions/19471005/sorting-an-arraylist-of-objects-alphabetically
-        Collections.sort(contactsMatch, new Comparator<Contact>() {
-            public int compare(Contact v1, Contact v2) {
-                return v1.getName().compareTo(v2.getName());
-            }
-        });
+//        Collections.sort(contactsMatch, new Comparator<Contact>() {
+//            public int compare(Contact v1, Contact v2) {
+//                return v1.getName().compareTo(v2.getName());
+//            }
+//        });
+
+//        https://www.geeksforgeeks.org/how-to-sort-an-arraylist-of-objects-by-property-in-java/
+        contactsMatch.sort(Comparator.comparing(Contact::getName));
+
         return contactsMatch;
     }
 

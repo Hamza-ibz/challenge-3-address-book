@@ -9,20 +9,21 @@ public class App {
         Scanner scanner = new Scanner(System.in);
         AddressBook addressBook = new AddressBook();
         boolean Executing = true;
-
+        loadContacts(addressBook);
 
         while (Executing) {
             showMenu();
             System.out.println("Enter your selection from above numbers: ");
-            String userChoice = scanner.next();
+            String userChoice = scanner.next().trim();
             switch (userChoice) {
                 case "1":
+                    scanner.nextLine();
                     System.out.println("Enter Contact Name : ");
-                    String name = scanner.next();
+                    String name = scanner.nextLine();
                     System.out.println("Enter Contact Email: ");
-                    String email = scanner.next();
-                    System.out.println("Enter Contact Phone Number: ");
-                    String phoneNumber = scanner.next();
+                    String email = scanner.nextLine();
+                    System.out.println("Enter Contact Phone Number (e.g. 07*********): ");
+                    String phoneNumber = scanner.nextLine();
                     try{
                         addressBook.addContact(new Contact(name, email, phoneNumber));
                         System.out.println("Contact successfully added.");
@@ -38,12 +39,16 @@ public class App {
                     Contact editContact = addressBook.getContactId(editId);
                     if(editContact.getId()!=0) {
                         scanner.nextLine();
-                        System.out.println("Enter Contact name: ");
+                        System.out.println("Currently name is ('"+editContact.getName()+"') ");
+                        System.out.println("Press 'Enter' key to leave it unchanged.");
+                        System.out.println("Enter New Contact name:");
                         String editName = scanner.nextLine();
-                        System.out.println("Enter email: ");
+                        editName = editName.equalsIgnoreCase("") ? editContact.getName() : editName;
+                        System.out.println("Enter New Contact Email:");
                         String editEmail = scanner.nextLine();
-                        System.out.println("Enter phone number: ");
+                        System.out.println("Enter New Contact Phone number:");
                         String editPhoneNumber = scanner.nextLine();
+
                         try {
                             addressBook.editContact(editId, editName, editEmail, editPhoneNumber);
                         } catch (Exception e) {
@@ -55,9 +60,17 @@ public class App {
                     System.out.println("================================================");
                     enterKey();
                     break;
+                case "3":
+                    System.out.println("Enter full/partial of the name to search : ");
+                    String searchTerm = scanner.next();
+                    System.out.println("Search results: ");
+                    addressBook.searchByName(searchTerm);
+                    System.out.println("================================================");
+                    enterKey();
+                    break;
                 case "7":
                     System.out.println("================================================");
-                    System.out.println("Thank you for using the Address Book. Farewell!");
+                    System.out.println("Thank you for using the Address Book. See you Soon!");
                     System.out.println("================================================");
                     Executing = false;
                     break;
@@ -77,6 +90,7 @@ public class App {
         System.out.println("================================================");
         System.out.println("1. Add Contact");
         System.out.println("2. Edit Contact");
+        System.out.println("3. Search contact");
         System.out.println("7. Exit");
         System.out.println("================================================");
     };
@@ -89,6 +103,17 @@ public class App {
             System.in.read();
         } catch (IOException ignored) {
         }
+    }
+
+    private static void loadContacts(AddressBook addressBook) {
+
+        Contact contact1 = new Contact("Hamza j", "aga@aga.com", "07777777777");
+        Contact contact2 = new Contact("Hamza e", "don@son.com","07666666666");
+        Contact contact3 = new Contact("Hamza f", "ke@mit.com", "07555555555");
+
+        addressBook.addContact(contact1);
+        addressBook.addContact(contact2);
+        addressBook.addContact(contact3);
     }
 
 
