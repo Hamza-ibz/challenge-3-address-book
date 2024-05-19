@@ -39,6 +39,30 @@ public class AddressBook {
         return new Contact();
     }
 
+    public boolean phoneNumberAlreadyExists(int id, String phoneNumber) {
+        for(Contact contact : contacts) {
+            if(contact.getId()==id){
+                continue;
+            }
+            if(contact.getPhoneNumber().equals(phoneNumber)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean emailAlreadyExists(int id, String email) {
+        for(Contact contact : contacts) {
+            if(contact.getId()==id){
+                continue;
+            }
+            if(contact.getEmail().toLowerCase().equals(email.toLowerCase())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public boolean phoneNumberAlreadyExists(String phoneNumber) {
         for(Contact contact : contacts) {
             if(contact.getPhoneNumber().equals(phoneNumber)) {
@@ -48,7 +72,7 @@ public class AddressBook {
         return false;
     }
 
-    public boolean emailAlreadyExists(String email) {
+    public boolean emailAlreadyExists( String email) {
         for(Contact contact : contacts) {
             if(contact.getEmail().toLowerCase().equals(email.toLowerCase())) {
                 return true;
@@ -61,10 +85,11 @@ public class AddressBook {
         for (Contact contact : contacts) {
             if (contact.getId()==id) {
                 contacts.remove(contact);
+                System.out.println("Contact with ID "+id+" successfully removed.");
                 return;
             }
         }
-        System.out.println("Contact not found.");
+        System.out.println("Contact not found. Please check the ID input.");
     }
 
     public void searchByName(String name) {
@@ -125,12 +150,12 @@ public class AddressBook {
         for (Contact contact : contacts) {
             if (contact.getId() == id) {
                 idFound = true;
-                if(!(emailAlreadyExists(NewEmail) || phoneNumberAlreadyExists(newPhoneNumber))) {
+                if(!(emailAlreadyExists(id,NewEmail) || phoneNumberAlreadyExists(id,newPhoneNumber))) {
                     phoneNumberOrEmailAlreadyExists = false;
                     contact.setName(newName);
                     contact.setEmail(NewEmail);
                     contact.setPhoneNumber(newPhoneNumber);
-                    System.out.println("Contact successfully changed:-");
+                    System.out.println("Successfully Completed:-");
                     System.out.println("Name: " + newName + ", Email: " + NewEmail + ", Phone Number: " + newPhoneNumber);
                     return;
                 }
@@ -159,6 +184,9 @@ public class AddressBook {
         for (Contact contact : contacts) {
             String contactInfo = "ID: " + contact.getId() +  " Name: " + contact.getName()  + ", Phone: " + contact.getPhoneNumber() + ", Email: " + contact.getEmail();
             stringBuilder.append(contactInfo).append("\n");
+        }
+        if (contacts.isEmpty()){
+            System.out.println("There are no contacts stored.");
         }
         stringBuilder.append("============================================================================\n");
         return stringBuilder.toString();

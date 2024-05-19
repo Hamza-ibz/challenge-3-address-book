@@ -39,15 +39,24 @@ public class App {
                     Contact editContact = addressBook.getContactId(editId);
                     if(editContact.getId()!=0) {
                         scanner.nextLine();
+
                         System.out.println("Currently name is ('"+editContact.getName()+"') ");
                         System.out.println("Press 'Enter' key to leave it unchanged.");
                         System.out.println("Enter New Contact name:");
                         String editName = scanner.nextLine();
                         editName = editName.equalsIgnoreCase("") ? editContact.getName() : editName;
+
+                        System.out.println("Currently Email is ('"+editContact.getEmail()+"') ");
+                        System.out.println("Press 'Enter' key to leave it unchanged.");
                         System.out.println("Enter New Contact Email:");
                         String editEmail = scanner.nextLine();
+                        editEmail = editEmail.equalsIgnoreCase("") ? editContact.getEmail() : editEmail;
+
+                        System.out.println("Currently Phone number is ('"+editContact.getPhoneNumber()+"') ");
+                        System.out.println("Press 'Enter' key to leave it unchanged.");
                         System.out.println("Enter New Contact Phone number:");
                         String editPhoneNumber = scanner.nextLine();
+                        editPhoneNumber = editPhoneNumber.equalsIgnoreCase("") ? editContact.getPhoneNumber() : editPhoneNumber;
 
                         try {
                             addressBook.editContact(editId, editName, editEmail, editPhoneNumber);
@@ -62,9 +71,22 @@ public class App {
                     break;
                 case "3":
                     System.out.println("Enter full/partial of the name to search : ");
-                    String searchTerm = scanner.next();
+                    String searchName = scanner.next();
                     System.out.println("Search results: ");
-                    addressBook.searchByName(searchTerm);
+                    addressBook.searchByName(searchName);
+                    System.out.println("================================================");
+                    enterKey();
+                    break;
+                case "4":
+                    System.out.println("Enter id: ");
+                    int id = scanner.nextInt();
+                    addressBook.removeContact(id);
+                    System.out.println("================================================");
+                    enterKey();
+                    break;
+                case "5":
+                    System.out.println("View All Contacts: ");
+                    System.out.println(addressBook.viewContacts());
                     System.out.println("================================================");
                     enterKey();
                     break;
@@ -90,14 +112,15 @@ public class App {
         System.out.println("================================================");
         System.out.println("1. Add Contact");
         System.out.println("2. Edit Contact");
-        System.out.println("3. Search contact");
+        System.out.println("3. Search Contact");
+        System.out.println("4. Remove Contact");
+        System.out.println("5. View All Contacts");
         System.out.println("7. Exit");
         System.out.println("================================================");
     };
 
     private static void enterKey() {
         System.out.println("Press the 'Enter' key to continue");
-        System.out.println("================================================");
 
         try {
             System.in.read();
