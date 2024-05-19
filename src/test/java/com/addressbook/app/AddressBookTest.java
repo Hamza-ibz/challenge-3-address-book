@@ -511,21 +511,18 @@ public class AddressBookTest {
             when(contactTest1.getEmail()).thenReturn("test@test.com");
             when(contactTest1.getName()).thenReturn("Test Test");
             when(contactTest1.getPhoneNumber()).thenReturn("077777777777");
-
             addressBookTest.addContact(contactTest1);
 
             contactTest2 = mock(Contact.class);
             when(contactTest2.getEmail()).thenReturn("tate@gmail.com");
             when(contactTest2.getName()).thenReturn("Tate Andy");
             when(contactTest2.getPhoneNumber()).thenReturn("07293874615");
-
             addressBookTest.addContact(contactTest2);
 
             contactTest3 = mock(Contact.class);
             when(contactTest3.getEmail()).thenReturn("andrew@gmail.com");
             when(contactTest3.getName()).thenReturn("Andrew Stan");
             when(contactTest3.getPhoneNumber()).thenReturn("07297283645");
-
             addressBookTest.addContact(contactTest3);
 
             outContent = new ByteArrayOutputStream();
@@ -542,6 +539,9 @@ public class AddressBookTest {
         @DisplayName("viewContacts() should display all contacts in the address book.")
         void testViewContactsDisplaysAllContactsInAddressBook() {
             //Arrange
+            System.out.println(contactTest1.getId());
+//            contactTest2.setId(2);
+//            contactTest3.setId(3);
             String expected = "============================================================================\n" +
                     "ID: 0 Name: Test Test, Phone: 077777777777, Email: test@test.com\n" +
                     "ID: 0 Name: Tate Andy, Phone: 07293874615, Email: tate@gmail.com\n" +
@@ -554,6 +554,49 @@ public class AddressBookTest {
             assertEquals(expected, actual);
             assertEquals(3, addressBookTest.getContacts().size());
         }
+
+        @Test
+        @DisplayName("Whene a contact is removed, viewContacts() should update accordingly to reflect the changes.")
+        void testViewContactsWhenContactIsRemoved() {
+            //Arrange
+            String expected = "============================================================================\n" +
+                    "ID: 0 Name: Tate Andy, Phone: 07293874615, Email: tate@gmail.com\n" +
+                    "ID: 0 Name: Andrew Stan, Phone: 07297283645, Email: andrew@gmail.com\n" +
+                    "============================================================================\n";
+            //Act
+            addressBookTest.removeContact(0);
+            String actual = addressBookTest.viewContacts();
+
+            // Assert
+            assertEquals(expected, actual);
+            assertEquals(2, addressBookTest.getContacts().size());
+        }
+
+        @Test
+        @DisplayName("Whene a contact is added, viewContacts() should update accordingly to reflect the changes.")
+        void testViewContactsWhenContactIsAdded() {
+            //Arrange
+            Contact contactTest4;
+            contactTest4 = mock(Contact.class);
+            when(contactTest4.getEmail()).thenReturn("mark@gmail.com");
+            when(contactTest4.getName()).thenReturn("Mark");
+            when(contactTest4.getPhoneNumber()).thenReturn("07888888888");
+            addressBookTest.addContact(contactTest4);
+            String expected = "============================================================================\n" +
+                    "ID: 0 Name: Test Test, Phone: 077777777777, Email: test@test.com\n" +
+                    "ID: 0 Name: Tate Andy, Phone: 07293874615, Email: tate@gmail.com\n" +
+                    "ID: 0 Name: Andrew Stan, Phone: 07297283645, Email: andrew@gmail.com\n" +
+                    "ID: 0 Name: Mark, Phone: 07888888888, Email: mark@gmail.com\n" +
+                    "============================================================================\n";
+            //Act
+            String actual = addressBookTest.viewContacts();
+
+            // Assert
+            assertEquals(expected, actual);
+            assertEquals(4, addressBookTest.getContacts().size());
+        }
+
+
     }
 
 }
