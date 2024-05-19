@@ -13,16 +13,8 @@ public class App {
         try {
             addressBook.addContact(contact);
             addressBook.addContact(contact1);
-            for(int i = 0; i < addressBook.getContacts().size(); i++) {
-                System.out.print(addressBook.getContacts().get(i).getName());
-                System.out.print(addressBook.getContacts().get(i).getId()+"\n");
-            }
-            addressBook.editContact(1,"bob","test@test","0712345");
 
-            for(int i = 0; i < addressBook.getContacts().size(); i++) {
-                System.out.print(addressBook.getContacts().get(i).getName());
-                System.out.print(addressBook.getContacts().get(i).getId()+"\n");
-            }
+            System.out.println(addressBook.viewContacts());
         }
         catch(Exception e) {
             System.out.println(e.getMessage());

@@ -89,13 +89,9 @@ So that I can keep the contact information up to date. <br>
 
 ##### Test Cases:-
 - You can use editContact() to update various fields of the contact, including name, email, and phone number.
-- Use editContact() to modify contact details by specifying the contact's ID.
 - If you try to edit a contact with an ID that doesn't exist, you'll receive an error message.
-- The function should reject any changes that don't meet the required format.
-- If a null value is passed as the name parameter to editContact, the contact should not be updated.
-- If the phone number provided to editContact already exists in the address book, the contact should not be updated.
-- Similarly, if the email passed to editContact already exists in the address book, the contact should not be updated.
-- The editContact() function should work properly even if you edit multiple contacts in a row.
+- If the phone number provided to editContact already exists in the address book, the contact should not be updated and give a message.
+- Similarly, if the email passed to editContact already exists in the address book, the contact should not be updated and give a message.
 
 #### User story 5:-
 
@@ -117,7 +113,6 @@ So that I can avoid having duplicate contacts. <br>
 
 ##### Test Cases:-
 - In addContact(), if the provided phone number or email already exists in the address book, the entry should be rejected.
-- Additionally, if both the phone number and email already exist in the address book, the entry should also be rejected.
 - addContact() should still accept an entry that matches a previous entry that was deleted from the address book.
 - When using editContact(), any changes that would result in a duplicate email or phone number in the address book should be rejected.
 

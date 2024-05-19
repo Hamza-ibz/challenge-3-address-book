@@ -122,6 +122,7 @@ public class AddressBookTest {
             assertThrows(IllegalArgumentException.class, () -> {addressBookTest.addContact(contactTest1);});
         }
 
+//        user story 5, test case 1
         @Test
         @DisplayName("The addContact() function should not add if phone number exist in the address book (duplicate phone numbers), throws IllegalArgumentException")
         void testContactDuplicatePhoneNumbers() {
@@ -139,6 +140,7 @@ public class AddressBookTest {
 
             // Assert
             assertThrows(IllegalArgumentException.class, () -> {addressBookTest.addContact(contactTest2);});
+            assertEquals(1, addressBookTest.getContacts().size());
         }
 
         @Test
@@ -158,6 +160,7 @@ public class AddressBookTest {
 
             // Assert
             assertThrows(IllegalArgumentException.class, () -> {addressBookTest.addContact(contactTest2);});
+            assertEquals(1, addressBookTest.getContacts().size());
         }
 
         @Test
@@ -410,6 +413,7 @@ public class AddressBookTest {
 
         @BeforeEach
         void setUp() {
+
             addressBookTest = new AddressBook();
             contactTest1 = mock(Contact.class);
 
@@ -455,7 +459,101 @@ public class AddressBookTest {
             assertEquals("contact not found. Please check ID.\n", outContent.toString() );
         }
 
+        //        user story 5, test case 3
+        @Test
+        @DisplayName("test editContact() with phone number already existing in the address book, the contact should not be updated and should give message.")
+        public void testEditContactWithExistedPhoneNumber() {
 
+            //Arrange
+
+            //Act
+            addressBookTest.editContact(contactTest1.getId(),"Tionge Jools","TiongeJools@gmail.com", "077777777777" );
+
+            // Assert
+            assertEquals("Phone number or email already exist. Please check details.\n", outContent.toString() );
+            assertEquals(contactTest1.getName(), "Test Test" );        }
+
+        //        user story 5, test case 3
+        @Test
+        @DisplayName("test editContact() with email already existing in the address book, the contact should not be updated and should give message.")
+        public void testEditContactWithExistedEmail() {
+
+            //Arrange
+
+            //Act
+            addressBookTest.editContact(contactTest1.getId(),"Tionge Jools","test@test.com", "07898964632");
+
+            // Assert
+            assertEquals("Phone number or email already exist. Please check details.\n", outContent.toString() );
+            assertEquals(contactTest1.getName(), "Test Test" );
+        }
+
+
+    }
+
+    @Nested
+    @DisplayName("AddressBook view contact")
+    class AddressBookViewContactsTests{
+
+        private ByteArrayOutputStream outContent;
+        AddressBook addressBookTest;
+        Contact contactTest1;
+        Contact contactTest2;
+        Contact contactTest3;
+
+
+        @BeforeEach
+        void setUp() {
+
+            addressBookTest = new AddressBook();
+
+            contactTest1 = mock(Contact.class);
+            when(contactTest1.getEmail()).thenReturn("test@test.com");
+            when(contactTest1.getName()).thenReturn("Test Test");
+            when(contactTest1.getPhoneNumber()).thenReturn("077777777777");
+
+            addressBookTest.addContact(contactTest1);
+
+            contactTest2 = mock(Contact.class);
+            when(contactTest2.getEmail()).thenReturn("tate@gmail.com");
+            when(contactTest2.getName()).thenReturn("Tate Andy");
+            when(contactTest2.getPhoneNumber()).thenReturn("07293874615");
+
+            addressBookTest.addContact(contactTest2);
+
+            contactTest3 = mock(Contact.class);
+            when(contactTest3.getEmail()).thenReturn("andrew@gmail.com");
+            when(contactTest3.getName()).thenReturn("Andrew Stan");
+            when(contactTest3.getPhoneNumber()).thenReturn("07297283645");
+
+            addressBookTest.addContact(contactTest3);
+
+            outContent = new ByteArrayOutputStream();
+            System.setOut(new PrintStream(outContent));
+
+        }
+
+        public void tearDown(){
+            addressBookTest = null;
+            contactTest1 = null;
+        }
+
+        @Test
+        @DisplayName("viewContacts() should display all contacts in the address book.")
+        void testViewContactsDisplaysAllContactsInAddressBook() {
+            //Arrange
+            String expected = "============================================================================\n" +
+                    "ID: 0 Name: Test Test, Phone: 077777777777, Email: test@test.com\n" +
+                    "ID: 0 Name: Tate Andy, Phone: 07293874615, Email: tate@gmail.com\n" +
+                    "ID: 0 Name: Andrew Stan, Phone: 07297283645, Email: andrew@gmail.com\n" +
+                    "============================================================================\n";
+            //Act
+            String actual = addressBookTest.viewContacts();
+
+            // Assert
+            assertEquals(expected, actual);
+            assertEquals(3, addressBookTest.getContacts().size());
+        }
     }
 
 }

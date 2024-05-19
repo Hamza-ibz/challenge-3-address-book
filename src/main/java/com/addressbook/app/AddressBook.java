@@ -1,6 +1,7 @@
 package com.addressbook.app;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class AddressBook {
 
@@ -59,7 +60,9 @@ public class AddressBook {
 
     public void searchByName(String name) {
         ArrayList<Contact> contactsMatch = SortByName(name);
-        printContactsSorted(contactsMatch);
+        for (Contact contact : contactsMatch) {
+            System.out.println("Name: " + contact.getName() + ", Email: " + contact.getEmail() + ", Phone Number: " + contact.getPhoneNumber());
+        }
     }
 
     private ArrayList<Contact> SortByName(String name) {
@@ -87,22 +90,49 @@ public class AddressBook {
         return contactsMatch;
     }
 
-    private void printContactsSorted(ArrayList<Contact> contactsMatch) {
-        for (Contact contact : contactsMatch) {
-            System.out.println("Name: " + contact.getName() + ", Email: " + contact.getEmail() + ", Phone Number: " + contact.getPhoneNumber());
+
+    public void editContact(int id, String newName, String NewEmail, String newPhoneNumber) {
+        boolean idFound = false;
+        boolean phoneNumberOrEmailAlreadyExists = false;
+
+        for (Contact contact : contacts) {
+            if (contact.getId() == id) {
+                idFound = true;
+                if(!(emailAlreadyExists(NewEmail) || phoneNumberAlreadyExists(newPhoneNumber))) {
+                    phoneNumberOrEmailAlreadyExists = false;
+                    contact.setName(newName);
+                    contact.setEmail(NewEmail);
+                    contact.setPhoneNumber(newPhoneNumber);
+                    System.out.println("Name: " + newName + ", Email: " + NewEmail + ", Phone Number: " + newPhoneNumber);
+                    return;
+                }
+                phoneNumberOrEmailAlreadyExists = true;
+            }
+
+        }
+        if(!idFound) {
+            System.out.println("contact not found. Please check ID.");
+        }
+
+        if(phoneNumberOrEmailAlreadyExists) {
+            System.out.println("Phone number or email already exist. Please check details.");
         }
     }
 
-    public void editContact(int id, String newName, String NewEmail, String newPhoneNumber) {
-        for (Contact contact : contacts) {
-            if (contact.getId() == id && !(emailAlreadyExists(NewEmail) || phoneNumberAlreadyExists(newPhoneNumber)) ) {
-                contact.setName(newName);
-                contact.setEmail(NewEmail);
-                contact.setPhoneNumber(newPhoneNumber);
-                System.out.println( "Name: " + newName + ", Email: " + NewEmail + ", Phone Number: " + newPhoneNumber);
-                return;
+    public String viewContacts(){
+        Collections.sort(contacts, new Comparator<Contact>() {
+            public int compare(Contact a, Contact b) {
+                return a.getId() - b.getId();
             }
+        });
+
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("============================================================================\n");
+        for (Contact contact : contacts) {
+            String contactInfo = "ID: " + contact.getId() +  " Name: " + contact.getName()  + ", Phone: " + contact.getPhoneNumber() + ", Email: " + contact.getEmail();
+            stringBuilder.append(contactInfo).append("\n");
         }
-        System.out.println("contact not found. Please check ID.");
+        stringBuilder.append("============================================================================\n");
+        return stringBuilder.toString();
     }
 }
