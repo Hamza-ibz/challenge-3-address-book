@@ -64,11 +64,11 @@ public class Contact {
 
     public static void validateEmail(String email) {
         if (email == null || email.trim().isEmpty()) {
-            throw new IllegalArgumentException("Email address cannot be empty or null ");
+            throw new IllegalArgumentException("Email address cannot be empty or null");
         }
 
 //        https://www.akto.io/tools/email-regex-Java-tester
-        if (!email.trim().matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\\\\\\\.[a-zA-Z]{2,}$")) {
+        if (!email.trim().matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
             throw new IllegalArgumentException("Email address must match email address standard format");
         }
     }
