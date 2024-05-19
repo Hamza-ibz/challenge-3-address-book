@@ -11,6 +11,9 @@ public class Contact {
     private static int idUnique = 1;
 
     public Contact(String name, String email, String phoneNumber) {
+        validateName(name);
+        validatePhoneNumber(phoneNumber);
+        validateEmail(email);
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
@@ -64,11 +67,13 @@ public class Contact {
             throw new IllegalArgumentException("Email address cannot be empty or null ");
         }
 
-        if (!email.trim().matches("^[^@]+@[^@]+\\.[^@]+$")) {
+//        https://www.akto.io/tools/email-regex-Java-tester
+        if (!email.trim().matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\\\\\\\.[a-zA-Z]{2,}$")) {
             throw new IllegalArgumentException("Email address must match email address standard format");
         }
     }
 
+//    https://stackoverflow.com/questions/11518035/regular-expression-for-gb-based-and-only-numeric-phone-number
     public static void validatePhoneNumber(String phoneNumber) {
         if (phoneNumber == null || phoneNumber.trim().isEmpty()) {
             throw new IllegalArgumentException("Phone number cannot be empty or null");
