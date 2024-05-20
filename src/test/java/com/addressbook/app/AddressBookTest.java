@@ -545,9 +545,9 @@ public class AddressBookTest {
 //            contactTest2.setId(2);
 //            contactTest3.setId(3);
             String expected = "============================================================================\n" +
-                    "ID: 0 Name: Test Test, Phone: 077777777777, Email: test@test.com\n" +
-                    "ID: 0 Name: Tate Andy, Phone: 07293874615, Email: tate@gmail.com\n" +
-                    "ID: 0 Name: Andrew Stan, Phone: 07297283645, Email: andrew@gmail.com\n" +
+                    "ID: 0, Name: Test Test, Phone Number: 077777777777, Email: test@test.com\n" +
+                    "ID: 0, Name: Tate Andy, Phone Number: 07293874615, Email: tate@gmail.com\n" +
+                    "ID: 0, Name: Andrew Stan, Phone Number: 07297283645, Email: andrew@gmail.com\n" +
                     "============================================================================\n";
             //Act
             String actual = addressBookTest.viewContacts();
@@ -562,8 +562,8 @@ public class AddressBookTest {
         void testViewContactsWhenContactIsRemoved() {
             //Arrange
             String expected = "============================================================================\n" +
-                    "ID: 0 Name: Tate Andy, Phone: 07293874615, Email: tate@gmail.com\n" +
-                    "ID: 0 Name: Andrew Stan, Phone: 07297283645, Email: andrew@gmail.com\n" +
+                    "ID: 0, Name: Tate Andy, Phone Number: 07293874615, Email: tate@gmail.com\n" +
+                    "ID: 0, Name: Andrew Stan, Phone Number: 07297283645, Email: andrew@gmail.com\n" +
                     "============================================================================\n";
             //Act
             addressBookTest.removeContact(0);
@@ -585,10 +585,10 @@ public class AddressBookTest {
             when(contactTest4.getPhoneNumber()).thenReturn("07888888888");
             addressBookTest.addContact(contactTest4);
             String expected = "============================================================================\n" +
-                    "ID: 0 Name: Test Test, Phone: 077777777777, Email: test@test.com\n" +
-                    "ID: 0 Name: Tate Andy, Phone: 07293874615, Email: tate@gmail.com\n" +
-                    "ID: 0 Name: Andrew Stan, Phone: 07297283645, Email: andrew@gmail.com\n" +
-                    "ID: 0 Name: Mark, Phone: 07888888888, Email: mark@gmail.com\n" +
+                    "ID: 0, Name: Test Test, Phone Number: 077777777777, Email: test@test.com\n" +
+                    "ID: 0, Name: Tate Andy, Phone Number: 07293874615, Email: tate@gmail.com\n" +
+                    "ID: 0, Name: Andrew Stan, Phone Number: 07297283645, Email: andrew@gmail.com\n" +
+                    "ID: 0, Name: Mark, Phone Number: 07888888888, Email: mark@gmail.com\n" +
                     "============================================================================\n";
             //Act
             String actual = addressBookTest.viewContacts();
