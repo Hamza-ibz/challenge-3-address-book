@@ -193,7 +193,7 @@ public class AddressBook {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("============================================================================\n");
         for (Contact contact : contacts) {
-            String contactInfo = "ID: " + contact.getId() + " Name: " + contact.getName() + ", Phone: " + contact.getPhoneNumber() + ", Email: " + contact.getEmail();
+            String contactInfo = "ID: " + contact.getId() + ", Name: " + contact.getName() + ", Phone Number: " + contact.getPhoneNumber() + ", Email: " + contact.getEmail();
             stringBuilder.append(contactInfo).append("\n");
         }
         if (contacts.isEmpty()) {
