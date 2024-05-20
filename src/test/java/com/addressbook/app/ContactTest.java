@@ -7,31 +7,36 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ContactTest {
+
+    // Nested class for testing the constructor of the Contact class
     @Nested
     @DisplayName("Constructor Test for Contact")
     class ContactConstructorTest {
 
+        // Test method to verify if the constructor correctly sets values when valid input is provided
         @Test
         @DisplayName("Constructor sets expected values when valid")
         public void testConstructorSetsCorrectValue() {
-            // Arrange
+            // Arrange (setup any preconditions or inputs)
 
-            // Act
-            Contact Contact = new Contact("Kevin D", "kevin@gmail.com", "07348290000");
+            // Act (call the method under test)
+            Contact contact = new Contact("Kevin D", "kevin@gmail.com", "07348290000");
 
-            // Assert
+            // Assert (verify the results)
             assertAll("Constructor sets correct values",
-                    () -> assertEquals("Kevin D", Contact.getName()),
-                    () -> assertEquals("kevin@gmail.com", Contact.getEmail()),
-                    () -> assertEquals("07348290000", Contact.getPhoneNumber())
+                    () -> assertEquals("Kevin D", contact.getName()),
+                    () -> assertEquals("kevin@gmail.com", contact.getEmail()),
+                    () -> assertEquals("07348290000", contact.getPhoneNumber())
             );
         }
     }
 
+    // Nested class for testing the validation logic in the Contact class
     @Nested
     @DisplayName("Tests validation for name, phone number and email")
     class ContactValidationTest {
 
+        // Test to ensure an exception is thrown for empty name
         @Test
         @DisplayName("Test for validation on name, should throw Exception")
         public void testValidationOnNameThrowsExceptionForEmptyName() {
@@ -39,22 +44,25 @@ public class ContactTest {
             assertEquals("Name cannot be empty or null", exception.getMessage());
         }
 
+        // Test to ensure an exception is thrown for invalid email format
         @Test
         @DisplayName("Test for validation on Email should throw Exception")
-        public void TestForValidationOnEmailShouldThrowException() {
+        public void testValidationOnEmailShouldThrowException() {
             IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> Contact.validateEmail("ThereIsNoEmailSymbolHere"));
             assertEquals("Email address must match email address standard format", exception.getMessage());
         }
 
+        // Test to ensure an exception is thrown for invalid phone number format
         @Test
         @DisplayName("Test for validation on phone number should throw Exception")
-        public void TestForValidationOnPhoneNumberShouldThrowException() {
+        public void testValidationOnPhoneNumberShouldThrowException() {
             IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> Contact.validatePhoneNumber("12345678909"));
             assertEquals("Phone number must match UK phone number format", exception.getMessage());
         }
 
         //**
 
+        // Test to ensure an exception is thrown for email addresses containing only the domain portion
         @Test
         @DisplayName("Test for exception for email addresses containing only the domain portion.")
         public void testExceptionForEmailAddressesContainingOnlyTheDomainPortion() {
@@ -62,6 +70,7 @@ public class ContactTest {
             assertEquals("Email address must match email address standard format", exception.getMessage());
         }
 
+        // Test to ensure an exception is thrown for null email addresses
         @Test
         @DisplayName("Test for an exception for a null email address.")
         public void testExceptionForNullEmailAddress() {
@@ -69,6 +78,7 @@ public class ContactTest {
             assertEquals("Email address cannot be empty or null", exception.getMessage());
         }
 
+        // Test to ensure an exception is thrown for email addresses without a domain part
         @Test
         @DisplayName("Test for an exception for an email address that lacks a domain part.")
         public void testExceptionForEmailAddressNoDomainPart() {
@@ -76,6 +86,7 @@ public class ContactTest {
             assertEquals("Email address must match email address standard format", exception.getMessage());
         }
 
+        // Test to ensure an exception is thrown for empty email addresses
         @Test
         @DisplayName("Test for an exception for an empty email address.")
         public void testForAnExceptionForAnEmptyEmailAddress() {
@@ -83,6 +94,7 @@ public class ContactTest {
             assertEquals("Email address cannot be empty or null", exception.getMessage());
         }
 
+        // Test to ensure an exception is thrown for email addresses without 'com' or 'co.uk'
         @Test
         @DisplayName("Test for an exception for an email address without 'com' or 'co.uk'.")
         public void testForAnExceptionForAnEmailAddressWithoutEndPart() {
@@ -92,12 +104,15 @@ public class ContactTest {
 
         //**
 
+        // Test to ensure an exception is thrown for phone numbers containing more than 11 digits
         @Test
         @DisplayName("Test for an exception for a phone number containing more than 11 digits.")
         public void testForAnExceptionForPhoneNumberContainingMoreThan11Digits() {
             IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> Contact.validatePhoneNumber("073456789101112"));
             assertEquals("Phone number must match UK phone number format", exception.getMessage());
         }
+
+        // Test to ensure an exception is thrown for phone numbers containing non-digit characters
         @Test
         @DisplayName("Test for an exception for a phone number containing non-digit characters.")
         public void testForAnExceptionForPhoneNumberContainingNonDigitCharacters() {
@@ -105,6 +120,7 @@ public class ContactTest {
             assertEquals("Phone number must match UK phone number format", exception.getMessage());
         }
 
+        // Test to ensure an exception is thrown for empty phone numbers
         @Test
         @DisplayName("Test for an exception for an empty phone number.")
         public void testForAnExceptionForAnEmptyPhoneNumber() {
@@ -112,6 +128,7 @@ public class ContactTest {
             assertEquals("Phone number cannot be empty or null", exception.getMessage());
         }
 
+        // Test to ensure an exception is thrown for phone numbers containing fewer than 11 digits
         @Test
         @DisplayName("Test for an exception for a phone number containing fewer than 11 digits.")
         public void testForAnExceptionForPhoneNumberContainingFewerThan11Digits() {
@@ -119,13 +136,12 @@ public class ContactTest {
             assertEquals("Phone number must match UK phone number format", exception.getMessage());
         }
 
+        // Test to ensure an exception is thrown for phone numbers that do not start with the UK format
         @Test
-        @DisplayName("Test for an exception for a phone number that does not start with uk format.")
+        @DisplayName("Test for an exception for a phone number that does not start with UK format.")
         public void testForAnExceptionForPhoneNumberDoesNotStartWithUkFormat() {
             IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> Contact.validatePhoneNumber("45989878765"));
             assertEquals("Phone number must match UK phone number format", exception.getMessage());
         }
-
-
     }
 }

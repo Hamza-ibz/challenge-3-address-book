@@ -230,7 +230,7 @@ public class AddressBookTest {
 
             // Assert
 //            https://stackoverflow.com/questions/32241057/how-to-test-a-print-method-in-java-using-junit
-            assertEquals("Name: Bob Beck, Email: Bob@Gmail.com, Phone Number: 07123456789\n", outContent.toString());
+            assertEquals("Id: 0 |  Name: Bob Beck |  Email: Bob@Gmail.com |  Phone Number: 07123456789\n", outContent.toString());
             assertEquals(2, addressBookTest.getContacts().size());
         }
 
@@ -278,7 +278,7 @@ public class AddressBookTest {
 
             // Assert
 //            https://stackoverflow.com/questions/32241057/how-to-test-a-print-method-in-java-using-junit
-            assertEquals("Name: bob beck, Email: bob@Gmail.com, Phone Number: 07123456789\n", outContent.toString());
+            assertEquals("Id: 0 |  Name: bob beck |  Email: bob@Gmail.com |  Phone Number: 07123456789\n", outContent.toString());
             assertEquals(2, addressBookTest.getContacts().size());
         }
 
@@ -326,7 +326,7 @@ public class AddressBookTest {
 
             // Assert
 //            https://stackoverflow.com/questions/32241057/how-to-test-a-print-method-in-java-using-junit
-            assertEquals("Name: Jon Smith, Email: test@test.com, Phone Number: 07123456734\n", outContent.toString());
+            assertEquals("Id: 0 |  Name: Jon Smith |  Email: test@test.com |  Phone Number: 07123456734\n", outContent.toString());
             assertEquals(2, addressBookTest.getContacts().size());
         }
 
@@ -383,11 +383,12 @@ public class AddressBookTest {
 
             // Assert
             assertEquals(0, addressBookTest.getContacts().size());
-            assertEquals("Incorrect name. Please check value entered.\n", outContent.toString());
+            assertEquals("Contact with ID 0 successfully removed.\n" +
+                    "Incorrect name. Please check value entered.\n", outContent.toString());
         }
 
         @Test
-        @DisplayName(" Remove a contact with id that doesn't exist, shows an error message.")
+        @DisplayName("Remove a contact with id that doesn't exist, shows an error message.")
         void testRemovedContactWithPhoneNumberThatDoesNotExist() {
             // Arrange
             ByteArrayOutputStream outContent;
@@ -398,7 +399,7 @@ public class AddressBookTest {
 
             // Assert
             assertEquals(1, addressBookTest.getContacts().size());
-            assertEquals("Contact not found.\n", outContent.toString());
+            assertEquals("Contact not found. Please check the ID input.\n", outContent.toString());
         }
     }
 
@@ -443,7 +444,8 @@ public class AddressBookTest {
             addressBookTest.editContact(contactTest1.getId(),"Tionge Jools","TiongeJools@gmail.com", "07839467583" );
 
             // Assert
-            assertEquals("Name: Tionge Jools, Email: TiongeJools@gmail.com, Phone Number: 07839467583\n", outContent.toString() );
+            assertEquals("Successfully Completed:-\n" +
+                    "Name: Tionge Jools, Email: TiongeJools@gmail.com, Phone Number: 07839467583\n", outContent.toString() );
         }
 
         @Test
@@ -456,7 +458,7 @@ public class AddressBookTest {
             addressBookTest.editContact(5,"Tionge Jools","TiongeJools@gmail.com", "07839467583" );
 
             // Assert
-            assertEquals("contact not found. Please check ID.\n", outContent.toString() );
+            assertEquals("Contact not found. Please check ID.\n", outContent.toString() );
         }
 
         //        user story 5, test case 3
