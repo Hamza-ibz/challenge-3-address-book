@@ -58,14 +58,14 @@ As a user, <br>
 I want to be able to remove a contact from the address book, <br>
 So that I can the address book does not contain unnecessary contacts. <br>
 
-|   Object    |                          Properties                           |        Messages        | Output  |
-| :---------: | :-----------------------------------------------------------: | :--------------------: | :-----: |
-| AddressBook |                 contacts @ArrayList<Contact>                  | removeContact(@String) |  @void  |
-|   Contact   |                         name @String                          |       getName()        | @String |
-|             |                         email @String                         |       getEmail()       | @String |
-|             |                      phoneNumber @String                      |    getPhoneNumber()    | @String |
-|             |                            id @int                            |                        |         |
-|             | constructor(name @String, email @String, phoneNumber @String) |                        |  @void  |
+|   Object    |                          Properties                           |      Messages       | Output  |
+| :---------: | :-----------------------------------------------------------: | :-----------------: | :-----: |
+| AddressBook |                 contacts @ArrayList<Contact>                  | removeContact(@int) |  @void  |
+|   Contact   |                         name @String                          |      getName()      | @String |
+|             |                         email @String                         |     getEmail()      | @String |
+|             |                      phoneNumber @String                      |  getPhoneNumber()   | @String |
+|             |                            id @int                            |                     |         |
+|             | constructor(name @String, email @String, phoneNumber @String) |                     |  @void  |
 
 ##### Test Cases:-
 - The length of the contacts array should decrease by 1 (When removeContact() is called).
@@ -103,8 +103,8 @@ So that I can avoid having duplicate contacts. <br>
 | :---------: | :-----------------------------------------------------------: | :------------------------------------------: | :------: |
 | AddressBook |                 contacts @ArrayList<Contact>                  |             addContact(@Contact)             |  @void   |
 |             |                                                               | editContact(@int, @String, @String, @String) |  @void   |
-|             |                                                               |        doesPhoneNumberExist(@String)         | @boolean |
-|             |                                                               |           doesEmailExist(@String)            | @boolean |
+|             |                                                               |      phoneNumberAlreadyExists(@String)       | @boolean |
+|             |                                                               |         emailAlreadyExists(@String)          | @boolean |
 |   Contact   |                         name @String                          |                  getName()                   | @String  |
 |             |                         email @String                         |                  getEmail()                  | @String  |
 |             |                      phoneNumber @String                      |               getPhoneNumber()               | @String  |
@@ -138,9 +138,9 @@ As a user, <br>
 I want to be able to use the console interface to interact with the software, <br>
 So that I can see my results by using the software. <br>
 
-|  Object  | Properties |   Messages    | Output |
-| :------: | :--------: | :-----------: | :----: |
-| software |            | runSoftware() | @void  |
+| Object | Properties | Messages | Output |
+| :----: | :--------: | :------: | :----: |
+|  App   |            |  main()  | @void  |
 
 ##### Test Cases:-
 - When the user chooses to add a contact from the menu, the addContact() function should be triggered.
@@ -276,33 +276,54 @@ classDiagram
  class AddressBook {
   - List<Contact> contactList
   + addContact(Contact contact): void
-  + editContact(int id String name, String phoneNumber, String email): void
-  + viewContacts(): List<Contact>
-  + removeContact(Contact contact): void
-  + searchByName(String name): List<Contact>
-  + searchByEmail(String email): List<Contact>
-  + searchByPhoneNumber(String phoneNumber): List<Contact>
-  + searchService(String name): List<Contact>
-  + doesEmailExist(int id, String email): boolean
-  + doesPhoneNumberExist(int id, String phoneNumber): boolean
-  + deletionService(): void
+  + getContacts(): ArrayList<Contact> 
+  + getContactId(id: int): Contact
+  + phoneNumberAlreadyExists(id: int, phoneNumber: String): boolean 
+  + emailAlreadyExists(id: int, email: String): boolean 
+  + phoneNumberAlreadyExists(phoneNumber: String): boolean 
+  + emailAlreadyExists(email: String): boolean          
+  + removeContact(id: int): void                        
+  + searchByName(name: String): void      
+  - SortByName(name: String): ArrayList<Contact> (private)              
+  + searchByPhoneNumber(phoneNumber: String): void      
+  + searchByEmail(email: String): void                  
+  + editContact(id: int, newName: String, newEmail: String, newPhoneNumber: String): void 
+  + viewContacts(): String                              
+  + deletionService(): void                             
  }
  
   class Contact {
-    -int id
-    -String name 
-    -String email
-    -String phoneNumber
-    -int idUnique$
-    +contact(String name, String email, String phoneNumber)
-    +getId() int
-    +getName() String
-    +getEmail() String
-    +getPhoneNumber() String
-    +setEmail(String email) void
-    +setPhoneNumber(String phoneNumber) void
-    +setName(String name) void
+ - id: int              
+ - email: String        
+ - name: String         
+ - phoneNumber: String  
+ - idUnique: AtomicInteger (static) 
+ + Contact(name: String, email: String, phoneNumber: String) 
+ + Contact()             
+ + getId(): int          
+ + setId(id: int): void  
+ + getEmail(): String    
+ + setEmail(email: String): void 
+ + getName(): String     
+ + setName(name: String): void 
+ + getPhoneNumber(): String 
+ + setPhoneNumber(phoneNumber: String): void 
+ + validateName(name: String): void (static) 
+ + validateEmail(email: String): void (static) 
+ + validatePhoneNumber(phoneNumber: String): void (static) 
     }
 
+ class App {
+ + main(String[] args): void 
+ + showMenu(): void          
+ + enterKey(): void          
+ + loadContacts(AddressBook): void 
+ - addContact(Scanner, AddressBook): void 
+ - editContact(Scanner, AddressBook): void 
+ - searchContact(Scanner, AddressBook): void 
+ - removeContact(Scanner, AddressBook): void 
+ - viewAllContacts(AddressBook): void 
+ - deleteAllContacts(Scanner, AddressBook): void 
+    }
 
 

@@ -49,6 +49,7 @@ public class App {
 
                     System.out.println("Invalid input, please try again."); // Handle invalid input
                     System.out.println("================================================");
+                    enterKey(); // Wait for user to press Enter before continuing
             }
         }
         scanner.close(); // Close the scanner
