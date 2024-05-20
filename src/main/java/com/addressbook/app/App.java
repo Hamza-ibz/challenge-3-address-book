@@ -120,8 +120,9 @@ public class App {
 
     // Method to search for a contact by name
     private static void searchContact(Scanner scanner, AddressBook addressBook) {
+        scanner.nextLine();
         System.out.println("Enter full/partial name to search: ");
-        String searchName = scanner.next(); // Get the name to search
+        String searchName = scanner.nextLine(); // Get the name to search
         System.out.println("Search results: ");
         addressBook.searchByName(searchName); // Perform the search
         System.out.println("================================================");
